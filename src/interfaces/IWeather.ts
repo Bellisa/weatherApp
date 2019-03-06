@@ -1,5 +1,5 @@
 interface IWeather {
-    temperature: number,
-    wind: number,
-    icon: string
-  }
+  temperature: number;
+  wind: number;
+  icon: string;
+}

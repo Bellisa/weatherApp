@@ -6,13 +6,10 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./app.profile.component.css']
 })
 export class AppProfileComponent implements OnInit {
-  
   @Input()
   public Profile: IProfile;
 
-  constructor() { }
-
   ngOnInit() {
   }
-
 }
+

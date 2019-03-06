@@ -6,7 +6,7 @@ import { AppHotelItemComponent } from './app.hotel.item/app.hotel.item.component
 import { AppWeatherComponent } from './app.weather/app.weather.component';
 import { AppProfileComponent } from './app.profile/app.profile.component';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -23,3 +23,4 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

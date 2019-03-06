@@ -1,4 +1,4 @@
-export let getHotels: Function = (): IHotel[] => {
+export let getHotels: () => IHotel[] = (): IHotel[] => {
     return [
         {
             id: 0,
@@ -69,4 +69,4 @@ export let getHotels: Function = (): IHotel[] => {
             stars: 5
         }
     ];
-}
+};

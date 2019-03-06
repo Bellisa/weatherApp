@@ -1,5 +1,5 @@
 interface IProfile {
-    followers: number,
-    following: number,
-    photo: string
-  }
+  followers: number;
+  following: number;
+  photo: string;
+}

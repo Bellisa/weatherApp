@@ -5,15 +5,13 @@ import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angu
   templateUrl: './app.hotel.item.component.html',
   styleUrls: ['./app.hotel.item.component.css']
 })
-export class AppHotelItemComponent implements OnInit , OnDestroy{
-  
-
+export class AppHotelItemComponent implements OnInit, OnDestroy {
   constructor() { }
   @Input()
   hotel: IHotel;
 
   @Input()
-  activeItem:string
+  activeItem: string;
 
   @Output()
   public HotelClick: EventEmitter<IHotel> = new EventEmitter();
@@ -21,9 +19,10 @@ export class AppHotelItemComponent implements OnInit , OnDestroy{
   public SelectHotel() {
     this.HotelClick.emit(this.hotel);
   }
+
   ngOnInit() {
   }
-  
+
   ngOnDestroy(): void {
     this.HotelClick.unsubscribe();
   }

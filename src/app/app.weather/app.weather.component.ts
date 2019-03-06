@@ -11,12 +11,10 @@ export class AppWeatherComponent implements OnInit {
   public Weather: IWeather;
 
   public cssIcons: { [key: string]: string } = {
-    ["sun"] : "fas fa-sun",
-    ["rain"] : "fas fa-cloud-rain",
-    ["cloud"] : "fas fa-cloud-sun"
-    
-  }
-  constructor() { }
+    ['sun']: 'fas fa-sun',
+    ['rain']: 'fas fa-cloud-rain',
+    ['cloud']: 'fas fa-cloud-sun'
+  };
 
   ngOnInit() {
   }
