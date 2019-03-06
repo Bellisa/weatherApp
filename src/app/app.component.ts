@@ -8,8 +8,9 @@ import { getHotels } from '../data/hotels';
 })
 export class AppComponent implements OnInit {
   public SelectedHotel: IHotel;
-  get Weather(): IWeather { return this.SelectedHotel.weather; }
-  get Profile(): IProfile { return this.SelectedHotel.profile; }
+
+  // get Weather(): IWeather { return this.SelectedHotel.weather; }
+  // get Profile(): IProfile { return this.SelectedHotel.profile; }
 
   public Hotels: IHotel[] = null;
   title = 'weatherApp';

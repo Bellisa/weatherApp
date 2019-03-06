@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-app-hotel-item',
   templateUrl: './app.hotel.item.component.html',
   styleUrls: ['./app.hotel.item.component.css']
 })
-export class AppHotelItemComponent implements OnInit, OnDestroy {
+export class AppHotelItemComponent implements OnInit {
   constructor() { }
   @Input()
   hotel: IHotel;
@@ -21,9 +21,5 @@ export class AppHotelItemComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-  }
-
-  ngOnDestroy(): void {
-    this.HotelClick.unsubscribe();
   }
 }

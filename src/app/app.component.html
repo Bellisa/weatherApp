@@ -31,10 +31,10 @@
 
     <div class="col-md-4">
       <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        <app-app-weather [Weather]="Weather" class='d-flex'></app-app-weather>
+        <app-app-weather [Weather]="SelectedHotel.weather" class='d-flex'></app-app-weather>
       </div>
       <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-          <app-app-profile [Profile]="Profile"></app-app-profile>
+          <app-app-profile [Profile]="SelectedHotel.profile"></app-app-profile>
       </div>
 
     </div>
