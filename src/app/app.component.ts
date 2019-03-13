@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { getHotels } from '../data/hotels';
+import { IHotel } from 'src/interfaces/IHotel';
+import { IFavHotel } from 'src/interfaces/IFavHotel';
+import { of } from 'rxjs';
+import { debounceTime, delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -7,23 +11,69 @@ import { getHotels } from '../data/hotels';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  public SelectedHotel: IHotel;
 
-  // get Weather(): IWeather { return this.SelectedHotel.weather; }
-  // get Profile(): IProfile { return this.SelectedHotel.profile; }
-
-  public Hotels: IHotel[] = null;
-  title = 'weatherApp';
+  public selectedHotel: IHotel;
+  public hotels: IHotel[] = null;
+  public favHotels: IFavHotel[] = null;
+  public information: string;
+  public isLoadingShow: boolean = true;
 
   ngOnInit(): void {
-    this.Hotels = getHotels();
-    if (this.Hotels && this.Hotels.length > 0) {
-      this.SelectedHotel = this.Hotels[0];
+    // $ = of(mockedHotels).pipe(delay(3000))
+    of(getHotels())
+      .pipe(
+        delay(3000))
+      .subscribe((res) => {
+        this.isLoadingShow = false;
+        this.hotels = res;
+        console.log(res);
+        if (this.hotels && this.hotels.length > 0) {
+      this.selectedHotel = this.hotels[0];
+    }
+      });
+    
+  }
+
+  public selectHotel(hotel: IHotel) {
+    this.selectedHotel = hotel;
+  }
+  public delFavHotel(hotel: IFavHotel) {
+    if (this.delHotel(hotel.hotel)) {
+      this.information = `Hotel '${hotel.hotel.title}' was delete from favorite!`;
+    }
+    else {
+      this.information = `Hotel '${hotel.hotel.title}' can't delete from favorite!`;
+    }
+  }
+  public favClick(event: any) {
+    if (!this.favHotels)
+      this.favHotels = [];
+
+    if (!event.addedFav) {
+      const el = { hotel: event.hotel, voted: 0 };
+      console.log(el);
+
+      this.favHotels.push(el);
+      this.information = `Hotel '${event.hotel.title}' added to favorite!`;
+    }
+    else {
+      if (this.delHotel(event.hotel)) {
+        this.information = `Hotel '${event.hotel.title}' was delete from favorite!`;
+      }
+      else {
+        this.information = `Hotel '${event.hotel.title}' can't delete from favorite!`;
+      }
     }
   }
 
-  public SelectHotel(hotel: IHotel) {
-    this.SelectedHotel = hotel;
+  private delHotel(hotel: IHotel): boolean {
+    const index = this.favHotels.findIndex(el => el.hotel.id === hotel.id);
+
+    if (index !== -1) {
+      this.favHotels.splice(index, 1);
+      return true;
+    }
+    return false;
   }
 }
 

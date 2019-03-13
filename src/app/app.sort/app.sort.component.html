@@ -1,0 +1,13 @@
+<div class="btn-outline">
+            <button type="button" class="btn btn-light btn-sm col-md-4" (click)="sorted('title')">
+              titles
+              <i *ngIf="appSort.fieldName==='title'" [ngClass]="appSort.classArrow" aria-hidden="true"></i>
+            </button>
+            <button type="button" class="btn btn-light btn-sm col-md-4" (click)="sorted('description')">
+              descriptions
+             <i *ngIf="appSort.fieldName==='description'" [ngClass]="appSort.classArrow" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-light btn-sm col-md-4" (click)="sorted('stars')">
+              stars
+              <i *ngIf="appSort.fieldName==='stars'" [ngClass]="appSort.classArrow " aria-hidden="true"></i></button>
+         
+  </div>

@@ -1,0 +1,10 @@
+<ngb-alert 
+  class="alertPos let-modal"
+  placement="right"
+  *ngIf="successMessage" 
+  type="success" 
+  (close)="successMessage = null"
+  dismissible="true"
+>
+    {{ successMessage }}
+</ngb-alert>

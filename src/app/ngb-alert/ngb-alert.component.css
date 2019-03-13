@@ -1,0 +1,14 @@
+.alertPos{
+    width: 300px;
+    max-width: 300px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    height: 150px;
+    max-height: 150px;
+}

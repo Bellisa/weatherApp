@@ -1,0 +1,10 @@
+<div class="favBg flex-column d-flex position-static p-3 bg-white col-lg-12 p-4  ">
+
+  <h6 class="border-bottom border-gray pb-2 mb-0"><i class="favAd fas fa-heart mr-3"></i>Favorite hotels </h6>
+  <app-fav-hotel-item *ngFor="let hotel of favHotels" 
+  [favHotel]="hotel" 
+  (favHotelDel)="delFavHotel($event)"
+  >
+  </app-fav-hotel-item>
+
+</div>

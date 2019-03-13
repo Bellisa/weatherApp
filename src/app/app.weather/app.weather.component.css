@@ -3,5 +3,5 @@ span{
 }
 .bg-weather{
     background-color: rgb(252, 207, 207);  
-    width: auto;
+    min-width: 350px;
    }

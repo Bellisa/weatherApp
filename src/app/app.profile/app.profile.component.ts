@@ -1,15 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { IProfile } from 'src/interfaces/IProfile';
 
 @Component({
   selector: 'app-app-profile',
   templateUrl: './app.profile.component.html',
   styleUrls: ['./app.profile.component.css']
 })
-export class AppProfileComponent implements OnInit {
+export class AppProfileComponent {
   @Input()
-  public Profile: IProfile;
-
-  ngOnInit() {
-  }
+  public profile: IProfile;
 }
 

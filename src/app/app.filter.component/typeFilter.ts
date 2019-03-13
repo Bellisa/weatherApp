@@ -1,0 +1,1 @@
+export type filterType = { text: string, star: number };
