@@ -15,16 +15,16 @@ export class AppHotelItemComponent {
   public activeItem: boolean;
   @Input()
   public class: string;
-  
+
   @Output()
   public hotelClickEvent: EventEmitter<IHotel> = new EventEmitter();
   @Output()
   public favClickEvent: EventEmitter<IHotel> = new EventEmitter();
 
   public selectHotel(event: MouseEvent) {
-    if (event.toElement.className === "favDel fas fa-heart ml-3"
+   /* if (event.toElement.className === "favDel fas fa-heart ml-3"
       || event.toElement.className === "favAd fas fa-heart ml-3")
-      return;
+      return;*/
     this.hotelClickEvent.emit(this.hotel);
   }
 
@@ -36,7 +36,8 @@ export class AppHotelItemComponent {
     return (!this.addedFav) ? "Add to favorite" : "Delete from favorite";
   }
 
-  public addOrDelFav() {
+  public addOrDelFav(event:Event) {
+    event.stopPropagation();
     this.favClickEvent.emit(this.hotel);
   }
 }

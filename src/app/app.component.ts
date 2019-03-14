@@ -13,8 +13,8 @@ import { debounceTime, delay } from 'rxjs/operators';
 export class AppComponent implements OnInit {
 
   public selectedHotel: IHotel;
-  public hotels: IHotel[] = null;
-  public favHotels: IFavHotel[] = null;
+  public hotels: IHotel[] = [];
+  public favHotels: IFavHotel[] = [];
   public information: string;
   public isLoadingShow = true;
 
@@ -44,11 +44,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  public favClick(event: any) {
-    if (!this.favHotels) {
-      this.favHotels = [];
-    }
-
+  public favClick(event: { hotel: IHotel, addedFav: boolean }) {
     if (!event.addedFav) {
       const el = { hotel: event.hotel, voted: 0 };
       this.favHotels.push(el);
