@@ -14,7 +14,6 @@ export class NgbAlertComponent implements OnInit {
 
   @Input("information")
   public set information(val) {
-    console.log(val)
     this._success.next(val);
   }
 

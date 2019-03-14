@@ -43,7 +43,7 @@ export let getHotels: () => IHotel[] = (): IHotel[] => {
             profile: {
                 followers: 12,
                 following: 111,
-                photo: 'assets/images/8.jpg'
+                photo: 'assets/images/7.jpg'
             },
             stars: 4
         },
@@ -53,10 +53,10 @@ export let getHotels: () => IHotel[] = (): IHotel[] => {
             address: 'Orlando',
             description: 'Lorem ipson0',
             phone: '+3242353434',
-            picture: 'assets/images/9.jpg',
+            picture: 'assets/images/8.jpg',
             photos: [
-                'assets/images/10.jpg',
-                'assets/images/11.jpg'
+                'assets/images/9.jpg',
+                'assets/images/10.jpg'
             ],
             weather: {
                 temperature: -2,
@@ -76,7 +76,7 @@ export let getHotels: () => IHotel[] = (): IHotel[] => {
             address: 'Destin, United States',
             description: 'My Chance Charters has been fishing the waters out of Destin for over 30 years and they are excited to share their vast experience with you. ',
             phone: '+3242353434',
-            picture: 'assets/images/14.jpg',            
+            picture: 'assets/images/13.jpg',            
             photos: [
                 'assets/images/15.jpg',
                 'assets/images/16.jpg'
@@ -99,7 +99,7 @@ export let getHotels: () => IHotel[] = (): IHotel[] => {
             address: 'Destin, United States',
             description: 'Mighty Fine Charters is an exciting new addition to the Destin harbor. Owned by mother of two Lindley Staples Ward, this charter boat is the result of generations of family fishing and the desire to provide fun, affordable, family fishing trips.',
             phone: '+3242353434',
-            picture: 'assets/images/17.jpg',
+            picture: 'assets/images/22.jpg',
             
             photos: [
                 'assets/images/18.jpg',
@@ -126,7 +126,7 @@ export let getHotels: () => IHotel[] = (): IHotel[] => {
             picture: 'assets/images/21.jpg',            
             photos: [
                 'assets/images/22.jpg',
-                'assets/images/20.jpg'
+                'assets/images/23.jpg'
             ],
             weather: {
                 'temperature': -2,
@@ -136,7 +136,7 @@ export let getHotels: () => IHotel[] = (): IHotel[] => {
             profile: {
                 'followers': 45,
                 'following': 78,
-                'photo': 'assets/images/19.jpg'
+                'photo': 'assets/images/24.jpg'
             },
             stars: 5
         }

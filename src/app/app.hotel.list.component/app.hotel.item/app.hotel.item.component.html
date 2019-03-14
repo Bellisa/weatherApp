@@ -1,20 +1,21 @@
 <div class="list-group-item list-group-item-action {{activeItem}}" (click)="selectHotel($event)" [ngClass]="class">
   <div class="d-flex w-100 justify-content-between">      
       <h4 class="mb-1">{{hotel.title}}</h4>     
-      <small> <span *ngFor='let key of  [1,2,3,4,5]' class="fa fa-star" [ngClass]="{'checked': key <= hotel.stars}">
+      <small>
+        <span *ngFor='let key of  [1,2,3,4,5]' class="fa fa-star" 
+          [ngClass]="{'checked': key <= hotel.stars}">
         </span>
         <span 
-        [ngClass]="setClass()"
-         [title]="setTitle()"
-         (click)="addOrDelFav()">
+          [ngClass]="setClass()"
+          [title]="setTitle()"
+          (click)="addOrDelFav()">
         </span>
       </small>
       </div>
     <div class="content">      
       <div class="row mb-2">
         <div class="col-md-12">
-          <h6>{{hotel.description | shortDescription : 100 }}</h6>
-          
+          <h6>{{hotel.description | shortDescription : 100 }}</h6>          
           <img *ngFor='let photo of  hotel.photos' src="{{photo}}" class="rounded float-right ml-1" alt="{{photo}}"
             width="75" />
         </div>

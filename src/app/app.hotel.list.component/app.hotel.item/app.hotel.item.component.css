@@ -1,25 +1,32 @@
-span{
-    font-size:18px;color:lightgoldenrodyellow
+span {
+  font-size: 18px;
+  color: lightgoldenrodyellow
 }
-.checked {
-    color: orange;
-  }
-  .list-group-item.true {
-    z-index: 2;
-    color: #fff;
-    background-color: #b4d5f8;
-    border-color: #88acd3;
-} 
-.even{
-  background-color: lightcyan;
-  }
-  .odd{
-      background-color: lightyellow;
-  }
 
-  .favAd{
-    color:red
+.checked {
+  color: orange;
 }
-.favDel{
-  font-size:18px;color:pink
+
+.list-group-item.true {
+  z-index: 2;
+  color: #fff;
+  background-color: #b4d5f8;
+  border-color: #88acd3;
+}
+
+.even {
+  background-color: lightcyan;
+}
+
+.odd {
+  background-color: lightyellow;
+}
+
+.favAd {
+  color: red
+}
+
+.favDel {
+  font-size: 18px;
+  color: pink
 }

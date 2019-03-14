@@ -16,27 +16,25 @@ export class AppComponent implements OnInit {
   public hotels: IHotel[] = null;
   public favHotels: IFavHotel[] = null;
   public information: string;
-  public isLoadingShow: boolean = true;
+  public isLoadingShow = true;
 
   ngOnInit(): void {
-    // $ = of(mockedHotels).pipe(delay(3000))
     of(getHotels())
       .pipe(
         delay(3000))
       .subscribe((res) => {
         this.isLoadingShow = false;
         this.hotels = res;
-        console.log(res);
         if (this.hotels && this.hotels.length > 0) {
-      this.selectedHotel = this.hotels[0];
-    }
+          this.selectedHotel = this.hotels[0];
+        }
       });
-    
   }
 
   public selectHotel(hotel: IHotel) {
     this.selectedHotel = hotel;
   }
+
   public delFavHotel(hotel: IFavHotel) {
     if (this.delHotel(hotel.hotel)) {
       this.information = `Hotel '${hotel.hotel.title}' was delete from favorite!`;
@@ -45,14 +43,14 @@ export class AppComponent implements OnInit {
       this.information = `Hotel '${hotel.hotel.title}' can't delete from favorite!`;
     }
   }
+
   public favClick(event: any) {
-    if (!this.favHotels)
+    if (!this.favHotels) {
       this.favHotels = [];
+    }
 
     if (!event.addedFav) {
       const el = { hotel: event.hotel, voted: 0 };
-      console.log(el);
-
       this.favHotels.push(el);
       this.information = `Hotel '${event.hotel.title}' added to favorite!`;
     }

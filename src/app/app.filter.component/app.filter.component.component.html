@@ -1,10 +1,10 @@
 <div class="list-group-item list-group-item-action ">
   <div class="input-group input-group-sm mb-3 ">
-    <input (keyup)="filterChange($event)" type="text" class="form-control" aria-label="Sizing example input"
-      aria-describedby="button-addon2" (ngModel)="textFilter">
-    <!--<div class="input-group-append">
+    <input [(ngModel)]="textFilter" (keyup)="filterChange($event)" type="text" class="form-control" aria-label="Sizing example input"
+      aria-describedby="button-addon2" >
+    <div class="input-group-append">
       <button (click)="clickClear($event)" class="btn btn-outline-secondary input-group-text" type="button" id="button-addon2">х</button>
-    </div>-->
+    </div>
     <select (change)="onChange($event.target.value)" class="custom-select col-md-4 ml-2" id="inputGroupSelect04"
       aria-label="Example select with button addon">
       <option selected value="0">stars...</option>

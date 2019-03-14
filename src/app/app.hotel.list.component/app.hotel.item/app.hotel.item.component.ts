@@ -9,27 +9,22 @@ import { IHotel } from '../../../interfaces/IHotel';
 export class AppHotelItemComponent {
   @Input()
   public hotel: IHotel;
-
   @Input()
   public addedFav: boolean;
-
   @Input()
   public activeItem: boolean;
-
   @Input()
   public class: string;
-
+  
   @Output()
   public hotelClickEvent: EventEmitter<IHotel> = new EventEmitter();
-
   @Output()
   public favClickEvent: EventEmitter<IHotel> = new EventEmitter();
 
-  public selectHotel(event:MouseEvent) {
-    console.log(event.toElement.className);
-    if(event.toElement.className === "favDel fas fa-heart ml-3" 
-    ||  event.toElement.className === "favAd fas fa-heart ml-3")
-    return;
+  public selectHotel(event: MouseEvent) {
+    if (event.toElement.className === "favDel fas fa-heart ml-3"
+      || event.toElement.className === "favAd fas fa-heart ml-3")
+      return;
     this.hotelClickEvent.emit(this.hotel);
   }
 
@@ -37,7 +32,7 @@ export class AppHotelItemComponent {
     return (this.addedFav) ? "favAd fas fa-heart ml-3" : "favDel fas fa-heart ml-3";
   }
 
-  public setTitle(){
+  public setTitle() {
     return (!this.addedFav) ? "Add to favorite" : "Delete from favorite";
   }
 

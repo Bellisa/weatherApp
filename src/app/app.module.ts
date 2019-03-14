@@ -7,6 +7,7 @@ import { AppWeatherComponent } from './app.weather/app.weather.component';
 import { AppProfileComponent } from './app.profile/app.profile.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 import { AppHotelListComponentComponent } from './app.hotel.list.component/app.hotel.list.component.component';
 import { AppFilterComponentComponent } from './app.filter.component/app.filter.component.component';
 import { FilterPipe } from './pipes/filter.pipe';
@@ -35,7 +36,8 @@ import { NgbAlertComponent } from './ngb-alert/ngb-alert.component';
   ],
   imports: [
     BrowserModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

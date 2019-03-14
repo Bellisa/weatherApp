@@ -13,18 +13,15 @@ import { isNullOrUndefined } from 'util';
 export class AppHotelListComponentComponent {
   @Input()
   public hotels: IHotel[];
-
   @Input()
   public favHotels: IFavHotel[];
-
   @Input()
   public activeItemId: number;
 
   @Output()
   public hotelClick: EventEmitter<IHotel> = new EventEmitter();
-
   @Output()
-  public favClicked: EventEmitter< {hotel: IHotel, addedFav: boolean} > = new EventEmitter();
+  public favClicked: EventEmitter<{ hotel: IHotel, addedFav: boolean }> = new EventEmitter();
 
 
   public filter: filterType;
@@ -47,9 +44,8 @@ export class AppHotelListComponentComponent {
     return (isNullOrUndefined(this.favHotels) || isNullOrUndefined(this.favHotels.find(el => el.hotel.id === hotel.id))) ? false : true;
   }
 
-  public favAddDelClick(hotel:IHotel) {
-   // console.log(hotel);
-   this.favClicked.emit({hotel: hotel, addedFav: this.isAddedToFav(hotel)});
+  public favAddDelClick(hotel: IHotel) {
+    this.favClicked.emit({ hotel: hotel, addedFav: this.isAddedToFav(hotel) });
   }
 
 

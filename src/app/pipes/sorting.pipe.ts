@@ -27,5 +27,4 @@ export class SortingPipe implements PipeTransform {
       }
     });
   }
-
 }

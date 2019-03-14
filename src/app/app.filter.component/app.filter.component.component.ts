@@ -8,7 +8,7 @@ import { filterType } from './typeFilter';
   styleUrls: ['./app.filter.component.component.css']
 })
 export class AppFilterComponentComponent {
-  public textFilter: string;
+  public textFilter: string = "";
   public star: number = 0;
 
   @Output()
@@ -25,7 +25,7 @@ export class AppFilterComponentComponent {
   }
 
   public clickClear() {
-    this.textFilter="";
+    this.textFilter = "";
     this.filerApplyEvent.emit({ text: this.textFilter, star: this.star });
   }
 }

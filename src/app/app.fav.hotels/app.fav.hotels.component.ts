@@ -14,6 +14,6 @@ export class AppFavHotelsComponent {
   public favDelClicked: EventEmitter<IFavHotel> = new EventEmitter();
 
   public delFavHotel(favHot: IFavHotel) {
-    this.favDelClicked.emit(favHot)
+    this.favDelClicked.emit(favHot);
   }
 }

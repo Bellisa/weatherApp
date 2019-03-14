@@ -1,7 +1,9 @@
-span{
-    font-size:48px;color:red
+span {
+  font-size: 48px;
+  color: red
 }
-.bg-weather{
-    background-color: rgb(252, 207, 207);  
-    min-width: 350px;
-   }
+
+.bg-weather {
+  background-color: rgb(252, 207, 207);
+  min-width: 350px;
+}

@@ -15,5 +15,4 @@ export class FavHotelItemComponent {
   public favhotelDel() {
     this.favHotelDel.emit(this.favHotel);
   }
-
 }

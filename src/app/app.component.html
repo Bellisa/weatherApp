@@ -1,54 +1,63 @@
-<div  *ngIf="isLoadingShow; else hotelBlock" class="text-center pt-5">
+<div *ngIf="isLoadingShow; else hotelBlock" class="text-center pt-5">
   <div class="spinner-border" role="status">
     <span class="sr-only">Loading...</span>
   </div>
 </div>
 <ng-template #hotelBlock>
-<div class="container content">
-  <!-- container centers content on large screens -->
-  <div class="row mb-2">
-    <div class="col-md-6">
-      <div class="card mb-4 shadow-sm">
-        <img src="{{selectedHotel.picture}}" alt="..." class="rounded-top" />
-        <div class="card-body">
-          <h2>{{selectedHotel.title}}</h2>
-          <small> <span *ngFor='let key of  [1,2,3,4,5]' class="fa fa-star"
-              [ngClass]="{'checked': key <= selectedHotel.stars}">
-            </span></small>
-          <p class="card-text">{{selectedHotel.description}}</p>
-          <h6>address: {{selectedHotel.address}}</h6>
-          <h6>phone: {{selectedHotel.phone}}</h6>
-          <img *ngFor='let photo of  selectedHotel.photos' src="{{photo}}" class="rounded float-center mr-3"
-            alt="{{photo}}" width="200" />
+  <div class="container content">
+    <div class="row mb-2">
+      <div class="col-md-6">
+        <div class="card mb-4 shadow-sm">
+          <img src="{{selectedHotel.picture}}" alt="..." class="rounded-top" />
+          <div class="card-body">
+            <h2>{{selectedHotel.title}}</h2>
+            <small> <span *ngFor='let key of  [1,2,3,4,5]' class="fa fa-star" [ngClass]="{'checked': key <= selectedHotel.stars}">
+              </span></small>
+            <p class="card-text">{{selectedHotel.description}}</p>
+            <h6>address: {{selectedHotel.address}}</h6>
+            <h6>phone: {{selectedHotel.phone}}</h6>
+            <img *ngFor='let photo of  selectedHotel.photos' src="{{photo}}" class="rounded float-center mr-3" alt="{{photo}}"
+              width="200" />
+          </div>
         </div>
+
+        <div class="list-group">
+
+          <app-app-hotel-list-component 
+            (hotelClick)="selectHotel($event)"
+            [activeItemId]="selectedHotel.id" 
+            [hotels]="hotels"
+            [favHotels]="favHotels" 
+            (favClicked)="favClick($event)">
+          </app-app-hotel-list-component>
+
+          <app-ngb-alert 
+            [information]="information">
+          </app-ngb-alert>
+        </div>
+
       </div>
-      <div class="list-group">       
-        <app-app-hotel-list-component 
-        (hotelClick)="selectHotel($event)" 
-        [activeItemId]="selectedHotel.id"
-        [hotels]="hotels"
-        [favHotels]="favHotels"
-        (favClicked)="favClick($event)"
-        ></app-app-hotel-list-component>
-        <app-ngb-alert [information]="information"></app-ngb-alert>
-      </div> <!-- uses 6 columns on medium and larger screens.
-        
-        [favClicked]="favClick($event)" -->
-    </div>
       <div class="col-md-4">
-        <div
-          class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-          <app-app-weather [weather]="selectedHotel.weather" class='d-flex'></app-app-weather>
-        </div>
-        <div
-          class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-          <app-app-profile [profile]="selectedHotel.profile"></app-app-profile>
-        </div>
-        <div
-          class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-          <app-app-fav-hotels [favHotels]="favHotels" (favDelClicked)="delFavHotel($event)"></app-app-fav-hotels>
+
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <app-app-weather 
+            [weather]="selectedHotel.weather" 
+            class='d-flex'>
+          </app-app-weather>
         </div>
         
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <app-app-profile 
+            [profile]="selectedHotel.profile">
+          </app-app-profile>
+        </div>
+        
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <app-app-fav-hotels 
+            [favHotels]="favHotels" 
+            (favDelClicked)="delFavHotel($event)">
+          </app-app-fav-hotels>
+        </div>
 
       </div>
     </div>

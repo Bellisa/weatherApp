@@ -18,9 +18,7 @@ export class AppSortComponent {
   public sortEvent: EventEmitter<appSortType> = new EventEmitter();
 
   public sorted(field: string) {
-   
     if (this.appSort.fieldName === field) {
-     
       this.appSort.ask = !this.appSort.ask;
     }
     else {

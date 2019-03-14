@@ -10,8 +10,8 @@ import { isNull, isNullOrUndefined } from 'util';
 export class FilterPipe implements PipeTransform {
 
   transform(hotels: IHotel[], filter: filterType): IHotel[] {
- 
-    if (!filter || (filter.star == 0 && isNullOrUndefined(filter.text ))) {
+
+    if (!filter || (filter.star == 0 && isNullOrUndefined(filter.text))) {
       return hotels;
     }
 
@@ -28,11 +28,7 @@ export class FilterPipe implements PipeTransform {
           }) :
           hotels.filter((hotel: IHotel) => {
             return hotel.stars == filter.star;
-          })
-      ;
+          });
     return filteredProducts;
   }
-
-
-
 }

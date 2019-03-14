@@ -1,6 +1,7 @@
-.even div{
-background-color: lightcyan;
+.even div {
+  background-color: lightcyan;
 }
-.odd div{
-    background-color: lightyellow;
+
+.odd div {
+  background-color: lightyellow;
 }
