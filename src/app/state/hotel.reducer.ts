@@ -127,6 +127,11 @@ export function reducer(state = initialState, action: HotelActions | FavoriteHot
                 ...state,
                 error: action.payload
             };
+            case HotelActionTypes.ClearInfo:
+            return {
+                ...state,
+                information: ''
+            };
 
         default:
             return state;

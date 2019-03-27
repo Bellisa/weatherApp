@@ -23,7 +23,7 @@
           </app-app-hotel-list-component>
 
           <app-ngb-alert 
-            [information]="information$ | async">
+            [information]="information$ | async" (clear)="clearInformation()">
           </app-ngb-alert>
         </div>
 

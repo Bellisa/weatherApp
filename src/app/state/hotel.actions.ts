@@ -23,7 +23,9 @@ export enum HotelActionTypes {
 
   DeleteHotel = '[Hotel] Delete Hotel',
   DeleteHotelSuccess = '[Hotel] Delete Hotel Success',
-  DeleteHotelFail = '[Hotel] Delete Hotel Fail'
+  DeleteHotelFail = '[Hotel] Delete Hotel Fail',
+
+  ClearInfo = '[Hotel] ClearInfo',
 }
 export enum FavoriteHotelActionTypes {
     AddFavoriteHotel = '[Hotel] Add Favorite Hotel',
@@ -43,6 +45,10 @@ export class InitializeSelectedHotel implements Action {
 
 export class ClearSelectedHotel implements Action {
     readonly type = HotelActionTypes.ClearSelectedHotel;
+  }
+
+  export class ClearInfo implements Action {
+    readonly type = HotelActionTypes.ClearInfo;
   }
 
 export class Load implements Action {
@@ -141,7 +147,8 @@ export type HotelActions = SetSelectedHotel
   | CreateHotelFail
   | DeleteHotel
   | DeleteHotelSuccess
-  | DeleteHotelFail;
+  | DeleteHotelFail
+  | ClearInfo;
 
   export type FavoriteHotelActions =
   AddFavoriteHotel

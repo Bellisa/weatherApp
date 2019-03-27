@@ -45,7 +45,9 @@ export class AppComponent implements OnInit {
   public delFavHotel(hotel: IFavHotel) {
     this.store.dispatch(new hotelActions.DeleteFavoriteHotel(hotel.hotel.id));
   }
-
+public clearInformation(){
+  this.store.dispatch(new hotelActions.ClearInfo());
+}
   public favClick(event: { hotel: IHotel, addedFav: boolean }) {
     if (!event.addedFav) {
       const el = { hotel: event.hotel, voted: 0 };

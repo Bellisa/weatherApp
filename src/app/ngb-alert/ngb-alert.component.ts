@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
@@ -16,11 +16,16 @@ export class NgbAlertComponent implements OnInit {
   public set information(val) {
     this._success.next(val);
   }
+@Output()
+public clear: EventEmitter<any> = new EventEmitter();
 
   ngOnInit(): void {
     this._success.subscribe((message) => this.successMessage = message);
     this._success.pipe(
       debounceTime(5000)
-    ).subscribe(() => this.successMessage = null);
+    ).subscribe(() => {
+      this.successMessage = null;
+      this.clear.emit();
+    });
   }
 }
