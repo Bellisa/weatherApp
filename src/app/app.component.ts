@@ -2,8 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { getHotels } from '../data/hotels';
 import { IHotel } from 'src/interfaces/IHotel';
 import { IFavHotel } from 'src/interfaces/IFavHotel';
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
 import { debounceTime, delay } from 'rxjs/operators';
+import * as fromHotel from './state';
+import { Store, select } from '@ngrx/store';
+import * as hotelActions from './state/hotel.actions';
+import { HotelState } from './state/hotel.reducer';
 
 @Component({
   selector: 'app-root',
@@ -12,62 +16,46 @@ import { debounceTime, delay } from 'rxjs/operators';
 })
 export class AppComponent implements OnInit {
 
-  public selectedHotel: IHotel;
-  public hotels: IHotel[] = [];
-  public favHotels: IFavHotel[] = [];
-  public information: string;
-  public isLoadingShow = true;
+  public selectedHotel$: Observable<IHotel>;
+  public hotels$: Observable<IHotel[]>;
+  public favHotels$: Observable<IFavHotel[]>;
+  public information$: Observable<string>;
+  public isLoadingShow$: Observable<boolean>;
 
-  ngOnInit(): void {
-    of(getHotels())
-      .pipe(
-        delay(3000))
-      .subscribe((res) => {
-        this.isLoadingShow = false;
-        this.hotels = res;
-        if (this.hotels && this.hotels.length > 0) {
-          this.selectedHotel = this.hotels[0];
-        }
-      });
+  constructor(private store: Store<fromHotel.State>) {
+
   }
 
+  ngOnInit(): void {
+    this.isLoadingShow$ = this.store.pipe(select(fromHotel.getLoading));
+    this.store.dispatch(new hotelActions.Load());
+
+    this.hotels$ = this.store.pipe(
+      delay(3000),
+      select(fromHotel.getHoels),
+    );
+    this.information$ = this.store.pipe(select(fromHotel.getInformation));
+    this.selectedHotel$ = this.store.pipe(select(fromHotel.getSelectedHotel));
+    this.favHotels$ = this.store.pipe(select(fromHotel.getFavoriteHoels));
+
+
+  }
   public selectHotel(hotel: IHotel) {
-    this.selectedHotel = hotel;
+    this.store.dispatch(new hotelActions.SetSelectedHotel(hotel));
   }
 
   public delFavHotel(hotel: IFavHotel) {
-    if (this.delHotel(hotel.hotel)) {
-      this.information = `Hotel '${hotel.hotel.title}' was delete from favorite!`;
-    }
-    else {
-      this.information = `Hotel '${hotel.hotel.title}' can't delete from favorite!`;
-    }
+    this.store.dispatch(new hotelActions.DeleteFavoriteHotel(hotel.hotel.id));
   }
 
   public favClick(event: { hotel: IHotel, addedFav: boolean }) {
     if (!event.addedFav) {
       const el = { hotel: event.hotel, voted: 0 };
-      this.favHotels.push(el);
-      this.information = `Hotel '${event.hotel.title}' added to favorite!`;
+      this.store.dispatch(new hotelActions.AddFavoriteHotel(el));
     }
     else {
-      if (this.delHotel(event.hotel)) {
-        this.information = `Hotel '${event.hotel.title}' was delete from favorite!`;
-      }
-      else {
-        this.information = `Hotel '${event.hotel.title}' can't delete from favorite!`;
-      }
+      this.store.dispatch(new hotelActions.DeleteFavoriteHotel(event.hotel.id));
     }
-  }
-
-  private delHotel(hotel: IHotel): boolean {
-    const index = this.favHotels.findIndex(el => el.hotel.id === hotel.id);
-
-    if (index !== -1) {
-      this.favHotels.splice(index, 1);
-      return true;
-    }
-    return false;
   }
 }
 

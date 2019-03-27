@@ -17,7 +17,20 @@ import { AppFavHotelsComponent } from './app.fav.hotels/app.fav.hotels.component
 import { FavHotelItemComponent } from './app.fav.hotels/fav.hotel.item/fav.hotel.item.component';
 import { ShortDescriptionPipe } from './pipes/short-description.pipe';
 import { NgbAlertComponent } from './ngb-alert/ngb-alert.component';
+import { HotelModule } from './state/hotel.module';
 
+/* NgRx */
+import { StoreModule, MetaReducer } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { reducer, HotelState } from './state/hotel.reducer';
+import { HotelEffects } from './state/hotel.effects';
+import { HttpClientModule } from '@angular/common/http';
+import { SelectedHotelComponent } from './selected-hotel/selected-hotel.component';
+import { from } from 'rxjs';
+
+const metaReducers: MetaReducer<HotelState>[] = [];
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,12 +45,19 @@ import { NgbAlertComponent } from './ngb-alert/ngb-alert.component';
     AppFavHotelsComponent,
     FavHotelItemComponent,
     ShortDescriptionPipe,
-    NgbAlertComponent
+    NgbAlertComponent,
+    SelectedHotelComponent
+    
+    
   ],
   imports: [
     BrowserModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    HotelModule,
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

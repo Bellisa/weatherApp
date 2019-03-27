@@ -14,6 +14,7 @@ export class AppWeatherComponent {
   public cssIcons: { [key: string]: string } = {
     ['sun']: 'fas fa-sun',
     ['rain']: 'fas fa-cloud-rain',
-    ['cloud']: 'fas fa-cloud-sun'
+    ['cloud']: 'fas fa-cloud-sun',
+    ['null']:''
   };
 }
