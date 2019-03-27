@@ -1,7 +1,7 @@
      {
        "hotels": [
          {
-           "id": 0,
+           "id": 1,
            "title": "Universal Cabana",
            "address": "Orlando",
            "description": "Best one!",
@@ -24,7 +24,7 @@
            "stars": 3
          },
          {
-           "id": 1,
+           "id": 2,
            "title": "Kharkov plaza",
            "address": "Kharkov",
            "description": "Five stars",
@@ -46,7 +46,7 @@
            "stars": 4
          },
          {
-           "id": 2,
+           "id": 3,
            "title": "Hotel name",
            "address": "Orlando",
            "description": "Lorem ipson0",
@@ -69,7 +69,7 @@
            "stars": 5
          },
          {
-           "id": 3,
+           "id": 4,
            "title": "Charter Boat",
            "address": "Destin, United States",
            "description": "My Chance Charters has been fishing the waters out of Destin for over 30 years and they are excited to share their vast experience with you. ",
@@ -92,7 +92,7 @@
            "stars": 4
          },
          {
-           "id": 4,
+           "id": 5,
            "title": "Mighty Fine Charters ",
            "address": "Destin, United States",
            "description": "Mighty Fine Charters is an exciting new addition to the Destin harbor. Owned by mother of two Lindley Staples Ward, this charter boat is the result of generations of family fishing and the desire to prov",
@@ -117,7 +117,7 @@
            "stars": 5
          },
          {
-           "id": 5,
+           "id": 6,
            "title": "Relentless Charter Fishing ",
            "address": "Destin, United States",
            "description": "Mighty Fine Charters is an exciting new addition to the Destin harbor. Owned by mother of two Lindley Staples Ward, this charter boat is the result of generations of family fishing and the desire to prove fun, affordable, family fishing trips.",

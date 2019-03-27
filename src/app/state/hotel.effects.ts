@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
-import { mergeMap, map, catchError, switchMap } from 'rxjs/operators';
+import { mergeMap, map, catchError, switchMap, delay } from 'rxjs/operators';
 
 import { HotelService } from '../../services/hotel.service';
 import { IHotel } from '../../interfaces/IHotel';
@@ -19,11 +19,12 @@ export class HotelEffects {
 
     @Effect()
     loadHotels$: Observable<Action> = this.actions$.pipe(
+        delay(3000),
         ofType(hotelActions.HotelActionTypes.Load),
         mergeMap(action =>
             this.hotelService.getHotels().pipe(
                 map(hotels => {
-                    
+
                     return (new hotelActions.LoadSuccess(hotels))
                 }),
                 catchError(err => of(new hotelActions.LoadFail(err)))
