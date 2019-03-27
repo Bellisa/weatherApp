@@ -26,7 +26,7 @@ const initialState: HotelState = {
 };
 
 export function reducer(state = initialState, action: HotelActions | FavoriteHotelActions): HotelState {
-
+  //  console.log('start state'+action.type+' : ',state,action);
     switch (action.type) {
         case HotelActionTypes.SetSelectedHotel:
             return {
@@ -47,11 +47,12 @@ export function reducer(state = initialState, action: HotelActions | FavoriteHot
             };
 
         case HotelActionTypes.LoadSuccess:
+        
             return {
                 ...state,
-                loading:false,
+                loading: false,
                 hotels: action.payload,
-                selectedHotelId: action.payload && action.payload.length>0?0:null,
+                selectedHotelId: action.payload&&action.payload.length>0?action.payload[0].id:0,
                 error: ''
             };
 
@@ -59,7 +60,7 @@ export function reducer(state = initialState, action: HotelActions | FavoriteHot
             return {
                 ...state,
                 hotels: [],
-                selectedHotelId:null,
+                selectedHotelId: null,
                 error: action.payload
             };
 
@@ -110,8 +111,8 @@ export function reducer(state = initialState, action: HotelActions | FavoriteHot
                 information: `Hotel '${el.hotel.title}' was delete from favorite!`,
                 error: ''
             };
-            case FavoriteHotelActionTypes.AddFavoriteHotel:
-            console.log('state',state,action.payload);
+        case FavoriteHotelActionTypes.AddFavoriteHotel:
+            
             let fav = [...state.favoriteHotels];
             fav.push(action.payload);
             return {
