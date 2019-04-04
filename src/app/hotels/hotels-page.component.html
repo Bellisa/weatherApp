@@ -1,0 +1,59 @@
+<div *ngIf="isLoadingShow$ | async; else hotelBlock" class="text-center pt-5">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+<ng-template #hotelBlock>
+  <div class="container content">
+    <div class="row mb-2">
+      <div class="col-md-6">
+        <app-selected-hotel
+        *ngIf="selectedHotel$ | async"
+        [selectedHotel]="selectedHotel$ | async" 
+        ></app-selected-hotel>
+
+        <div class="list-group">
+
+          <app-app-hotel-list-component
+            (hotelClick)="selectHotel($event)"
+            [activeItemId]="(selectedHotel$ | async)?(selectedHotel$ | async).id:-1" 
+            [hotels]="hotels$ | async"
+            [favHotels]="favHotels$ | async" 
+            (favClicked)="favClick($event)">
+          </app-app-hotel-list-component>
+
+          <app-ngb-alert 
+            [information]="information$ | async" (clear)="clearInformation()">
+          </app-ngb-alert>
+        </div>
+
+      </div>
+      <div class="col-md-4">
+
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <app-app-weather 
+          *ngIf="selectedHotel$ | async" 
+            [weather]="(selectedHotel$ | async).weather" 
+            class='d-flex'>
+          </app-app-weather>
+        </div>
+        
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <app-app-profile 
+          *ngIf="selectedHotel$ | async"
+            [profile]="(selectedHotel$ | async).profile">
+          </app-app-profile>
+        </div>
+        
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <app-app-fav-hotels 
+            [favHotels]="favHotels$ | async" 
+            (favDelClicked)="delFavHotel($event)">
+          </app-app-fav-hotels>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ng-template>
+

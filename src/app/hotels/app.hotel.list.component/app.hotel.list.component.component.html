@@ -5,7 +5,7 @@
 <app-sort (sortEvent)="sortedHotels($event)"></app-sort>
 
 <app-app-hotel-item 
-  *ngFor="let hotel of (hotels | filterPipe : filter) | sorting : appSort;
+  *ngFor="let hotel of (hotels );
    even as myEven; "
   (hotelClickEvent)="selectedHotel(hotel)" 
   [activeItem]="hotel.id === activeItemId" 

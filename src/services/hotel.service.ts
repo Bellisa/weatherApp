@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 
 import { IHotel } from '../interfaces/IHotel';
 import { environment } from 'src/environments/environment';
+import { BaseService } from './base.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,74 +13,59 @@ import { environment } from 'src/environments/environment';
 export class HotelService {
   private hotelsUrl = `${environment.url}/hotels`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private baseService: BaseService ) { }
 
   getHotels(): Observable<IHotel[]> {
-    return this.http.get<IHotel[]>(this.hotelsUrl)
+    return this.baseService.gets<IHotel>(this.hotelsUrl)
       .pipe(
-        tap(data => console.log(JSON.stringify(data))),
-        catchError(this.handleError)
+        tap(data => console.log('getHotels: ' +(data.length))),//JSON.stringify(data)
+        catchError(this.baseService.handleError)
+      );
+  }
+  getHotel(id:number): Observable<IHotel> {
+    return this.baseService.get<IHotel>(this.hotelsUrl,id)
+      .pipe(
+       tap(data => console.log('getHotel:'+JSON.stringify(data))),
+        catchError(this.baseService.handleError)
       );
   }
 
   createHotel(hotel: IHotel): Observable<IHotel> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    hotel.id = null;
-    return this.http.post<IHotel>(this.hotelsUrl, hotel, { headers: headers })
+    return this.baseService.create<IHotel>(this.hotelsUrl, hotel)
       .pipe(
         tap(data => console.log('createHotel: ' + JSON.stringify(data))),
-        catchError(this.handleError)
+        catchError(this.baseService.handleError)
       );
   }
 
   deleteHotel(id: number): Observable<{}> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const url = `${this.hotelsUrl}/${id}`;
-    return this.http.delete<IHotel>(url, { headers: headers })
+    return this.baseService.delete<IHotel>(this.hotelsUrl, id)
       .pipe(
-        tap(data => console.log('deleteHotel: ' + id)),
-        catchError(this.handleError)
+        tap(data => console.log('delete Hotel: ' + id)),
+        catchError(this.baseService.handleError)
       );
   }
 
   updateHotel(hotel: IHotel): Observable<IHotel> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const url = `${this.hotelsUrl}/${hotel.id}`;
-    return this.http.put<IHotel>(url, hotel, { headers: headers })
+    return this.baseService.update<IHotel>(this.hotelsUrl, hotel,hotel.id)
       .pipe(
-        tap(() => console.log('updateProduct: ' + hotel.id)),
+        tap(() => console.log('update Product: ' + hotel.id)),
         // Return the product on an update
         map(() => hotel),
-        catchError(this.handleError)
+        catchError(this.baseService.handleError)
       );
   }
 
   patchHotel(hotel: IHotel): Observable<IHotel> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const url = `${this.hotelsUrl}/${hotel.id}`;
-    return this.http.patch<IHotel>(url, hotel, { headers: headers })
+    return this.baseService.patch<IHotel>(this.hotelsUrl, hotel,hotel.id)
       .pipe(
         tap(() => console.log('updateProduct: ' + hotel.id)),
         // Return the product on an update
         map(() => hotel),
-        catchError(this.handleError)
+        catchError(this.baseService.handleError)
       );
   }
 
-  private handleError(err) {
-    // in a real world app, we may send the server to some remote logging infrastructure
-    // instead of just logging it to the console
-    let errorMessage: string;
-    if (err.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
-      errorMessage = `An error occurred: ${err.error.message}`;
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
-      errorMessage = `Backend returned code ${err.status}: ${err.body.error}`;
-    }
-    console.error(err);
-    return throwError(errorMessage);
-  }
+  
 
 }

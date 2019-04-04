@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { IHotel } from 'src/interfaces/IHotel';
-import { filterType } from '../app.filter.component/typeFilter';
-import { appSortType } from '../app.sort/appSortType';
+import { filterType } from '../../components/app.filter.component/typeFilter';
+import { appSortType } from '../../components/app.sort/appSortType';
 import { IFavHotel } from 'src/interfaces/IFavHotel';
 import { isNullOrUndefined } from 'util';
 

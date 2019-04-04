@@ -1,4 +1,4 @@
-import { IHotel } from '../../interfaces/IHotel';
+import { IHotel } from '../../../interfaces/IHotel';
 
 /* NgRx */
 import { Action } from '@ngrx/store';

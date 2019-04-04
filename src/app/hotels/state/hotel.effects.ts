@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { mergeMap, map, catchError, switchMap, delay } from 'rxjs/operators';
 
-import { HotelService } from '../../services/hotel.service';
-import { IHotel } from '../../interfaces/IHotel';
+import { HotelService } from '../../../services/hotel.service';
+import { IHotel } from '../../../interfaces/IHotel';
 
 /* NgRx */
 import { Action } from '@ngrx/store';

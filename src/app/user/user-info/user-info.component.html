@@ -1,0 +1,27 @@
+
+  
+  <ul *ngIf="currentUser$ | async; else userInfoBlock" class="text-center navbar-nav mr-auto">
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="['login','edit']" >
+        {{(currentUser$ | async).userName}}<span class="sr-only"></span></a>
+        
+    </li>
+    <li class="nav-item">
+        <button class="btn btn-outline-success" (click)='logOut()'>Log out</button>
+    </li>
+
+  </ul>
+<ng-template #userInfoBlock>
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="['login']">
+        login <span class="sr-only"></span></a>
+
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="['login','registration']">
+        registration <span class="sr-only"></span></a>
+
+    </li>
+  </ul>
+</ng-template>

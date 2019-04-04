@@ -1,4 +1,4 @@
-import { IHotel } from '../../interfaces/IHotel';
+import { IHotel } from '../../../interfaces/IHotel';
 import { HotelActionTypes, HotelActions, FavoriteHotelActionTypes, FavoriteHotelActions } from './hotel.actions';
 import { IFavHotel } from 'src/interfaces/IFavHotel';
 

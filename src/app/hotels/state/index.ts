@@ -1,16 +1,16 @@
 import { createFeatureSelector, createSelector, ActionReducerMap } from '@ngrx/store';
 // import * as fromRoot from '../../state/app.state';
-import * as fromProducts from './hotel.reducer';
+import * as fromHotels from './hotel.reducer';
 
 // Extends the app state to include the product feature.
 // This is required because products are lazy loaded.
 // So the reference to ProductState cannot be added to app.state.ts directly.
 export interface State  {
-    hotels: fromProducts.HotelState;
+    hotels: fromHotels.HotelState;
 }
 
 // Selector functions
-const getHotelFeatureState = createFeatureSelector<fromProducts.HotelState>('hotels');
+const getHotelFeatureState = createFeatureSelector<fromHotels.HotelState>('hotels');
 
 export const getSelectedHotelId = createSelector(
     getHotelFeatureState,
