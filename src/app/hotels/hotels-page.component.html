@@ -19,9 +19,20 @@
             [activeItemId]="(selectedHotel$ | async)?(selectedHotel$ | async).id:-1" 
             [hotels]="hotels$ | async"
             [favHotels]="favHotels$ | async" 
-            (favClicked)="favClick($event)">
-          </app-app-hotel-list-component>
+            (favClicked)="favClick($event)"
+            (filter)="changeFilter($event)"
+            (appSort)="changeSort($event)">
+            
+        </app-app-hotel-list-component>
+          
+          <ngb-pagination
+          [collectionSize]="countPage$ | async" 
+          [(page)]="configPage.page.pageNumber" 
+          [(pageSize)]="configPage.page.pageLimit"           
+          (pageChange)="pageChange($event)"
+          >
 
+          </ngb-pagination>
           <app-ngb-alert 
             [information]="information$ | async" (clear)="clearInformation()">
           </app-ngb-alert>
@@ -48,7 +59,7 @@
         <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
           <app-app-fav-hotels 
             [favHotels]="favHotels$ | async" 
-            (favDelClicked)="delFavHotel($event)">
+            (favDelClicked)="delFavHotel($event)" >
           </app-app-fav-hotels>
         </div>
 

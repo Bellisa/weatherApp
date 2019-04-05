@@ -3,6 +3,7 @@ import { IHotel } from '../../../interfaces/IHotel';
 /* NgRx */
 import { Action } from '@ngrx/store';
 import { IFavHotel } from 'src/interfaces/IFavHotel';
+import { IConfigData } from 'src/interfaces/IConfigData';
 
 export enum HotelActionTypes {
   SetSelectedHotel = '[Hotel] Set Selected Hotel',
@@ -12,6 +13,10 @@ export enum HotelActionTypes {
   Load = '[Hotel] Load',
   LoadSuccess = '[Hotel] Load Success',
   LoadFail = '[Hotel] Load Fail',
+
+  LoadCount = '[Hotel] Load Count',
+  LoadCountSuccess = '[Hotel] Load Count Success',
+  LoadCountFail = '[Hotel] Load Count Fail',
 
   UpdateHotel = '[Hotel] Update Hotel',
   UpdateHotelSuccess = '[Hotel] Update Hotel Success',
@@ -53,6 +58,7 @@ export class ClearSelectedHotel implements Action {
 
 export class Load implements Action {
   readonly type = HotelActionTypes.Load;
+  constructor(public payload?: IConfigData) { }
 }
 
 export class LoadSuccess implements Action {
@@ -66,6 +72,24 @@ export class LoadFail implements Action {
 
   constructor(public payload: string) { }
 }
+////////////
+export class LoadCount implements Action {
+  readonly type = HotelActionTypes.LoadCount;
+  constructor(public payload?: IConfigData) { }
+}
+
+export class LoadCountSuccess implements Action {
+  readonly type = HotelActionTypes.LoadCountSuccess;
+
+  constructor(public payload: number) { }
+}
+
+export class LoadCountFail implements Action {
+  readonly type = HotelActionTypes.LoadCountFail;
+
+  constructor(public payload: string) { }
+}
+////////////////
 
 export class UpdateHotel implements Action {
   readonly type = HotelActionTypes.UpdateHotel;
@@ -139,6 +163,9 @@ export type HotelActions = SetSelectedHotel
   | Load
   | LoadSuccess
   | LoadFail
+  | LoadCount
+  | LoadCountSuccess
+  | LoadCountFail
   | UpdateHotel
   | UpdateHotelSuccess
   | UpdateHotelFail

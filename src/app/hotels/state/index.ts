@@ -39,6 +39,11 @@ export const getHoels = createSelector(
     state => state.hotels
 );
 
+export const getHoelsCount = createSelector(
+    getHotelFeatureState,
+    state => state.hotelsCount
+);
+
 export const getError = createSelector(
     getHotelFeatureState,
     state => state.error

@@ -10,6 +10,7 @@ import { IHotel } from '../../../interfaces/IHotel';
 import { Action } from '@ngrx/store';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import * as hotelActions from './hotel.actions';
+import { IConfigData } from 'src/interfaces/IConfigData';
 
 @Injectable()
 export class HotelEffects {
@@ -21,14 +22,34 @@ export class HotelEffects {
     loadHotels$: Observable<Action> = this.actions$.pipe(
         delay(3000),
         ofType(hotelActions.HotelActionTypes.Load),
-        mergeMap(action =>
-            this.hotelService.getHotels().pipe(
+        map((action: hotelActions.Load) => action.payload),
+        mergeMap((conf: IConfigData) =>{
+        console.log('Effect:'+JSON.stringify(conf));
+             return this.hotelService.getHotels(conf).pipe(
                 map(hotels => {
 
                     return (new hotelActions.LoadSuccess(hotels))
                 }),
                 catchError(err => of(new hotelActions.LoadFail(err)))
             )
+        }
+        )
+    );
+    @Effect()
+    loadHotelsCount$: Observable<Action> = this.actions$.pipe(
+        delay(3000),
+        ofType(hotelActions.HotelActionTypes.LoadCount),
+        map((action: hotelActions.LoadCount) => action.payload),
+        mergeMap((conf: IConfigData)=>{
+            //conf.page=null;
+             return this.hotelService.getHotels({...conf,page:null}).pipe(
+                map(hotels => {
+                    console.log(conf + ' action  ' + hotels)
+                    return (new hotelActions.LoadCountSuccess(hotels ? hotels.length : 0))
+                }),
+                catchError(err => of(new hotelActions.LoadCountFail(err)))
+            )
+        }
         )
     );
 

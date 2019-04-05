@@ -6,6 +6,7 @@ import { catchError, tap, map } from 'rxjs/operators';
 import { IHotel } from '../interfaces/IHotel';
 import { environment } from 'src/environments/environment';
 import { BaseService } from './base.service';
+import { IConfigData } from 'src/interfaces/IConfigData';
 
 @Injectable({
   providedIn: 'root',
@@ -15,8 +16,8 @@ export class HotelService {
 
   constructor(private baseService: BaseService ) { }
 
-  getHotels(): Observable<IHotel[]> {
-    return this.baseService.gets<IHotel>(this.hotelsUrl)
+  getHotels(data?:IConfigData): Observable<IHotel[]> {
+    return this.baseService.gets<IHotel>(this.hotelsUrl+this.baseService.getUrlQueryParam(data))
       .pipe(
         tap(data => console.log('getHotels: ' +(data.length))),//JSON.stringify(data)
         catchError(this.baseService.handleError)

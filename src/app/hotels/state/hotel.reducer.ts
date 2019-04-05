@@ -9,6 +9,7 @@ export interface HotelState {
     selectedHotelId: number | null;
 
     hotels: IHotel[];
+    hotelsCount:number;
     favoriteHotels: IFavHotel[];
 
     information: string;
@@ -20,6 +21,7 @@ const initialState: HotelState = {
     loading: true,
     selectedHotelId: null,
     hotels: [],
+    hotelsCount:0,
     favoriteHotels: [],
     information: '',
     error: ''
@@ -53,6 +55,14 @@ export function reducer(state = initialState, action: HotelActions | FavoriteHot
                 loading: false,
                 hotels: action.payload,
                 selectedHotelId: action.payload&&action.payload.length>0?action.payload[0].id:0,
+                error: ''
+            };
+            case HotelActionTypes.LoadCountSuccess:
+            console.log('start state'+action.type+' : ',state,action+":"+action.payload);
+            return {
+                ...state,
+                loading: false,
+                hotelsCount: action.payload,
                 error: ''
             };
 

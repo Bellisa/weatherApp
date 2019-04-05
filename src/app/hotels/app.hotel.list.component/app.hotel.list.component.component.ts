@@ -22,22 +22,22 @@ export class AppHotelListComponentComponent {
   public hotelClick: EventEmitter<IHotel> = new EventEmitter();
   @Output()
   public favClicked: EventEmitter<{ hotel: IHotel, addedFav: boolean }> = new EventEmitter();
+  @Output()
+  public filter: EventEmitter<filterType> = new EventEmitter();
+  @Output()
+  public appSort: EventEmitter<appSortType> = new EventEmitter();
 
-
-  public filter: filterType;
-  public appSort: appSortType;
 
   public selectedHotel(hotel: IHotel) {
     this.hotelClick.emit(hotel);
   }
 
   public filerApply(filter: filterType) {
-    this.filter = filter;
+    this.filter.emit(filter);
   }
 
   public sortedHotels(appSort: appSortType) {
-    console.log(appSort);
-    this.appSort = appSort;
+    this.appSort.emit(appSort);
   }
 
   public isAddedToFav(hotel: IHotel) {
