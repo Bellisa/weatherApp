@@ -22,6 +22,7 @@ import { SelectedHotelComponent } from './selected-hotel/selected-hotel.componen
 import { HotelsPageComponent } from './hotels-page.component';
 import { AppWeatherComponent } from '../components/app.weather/app.weather.component';
 import { AppProfileComponent } from '../components/app.profile/app.profile.component';
+import { HotelsDetailsComponent } from './hotels-details/hotels-details.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { AppProfileComponent } from '../components/app.profile/app.profile.compo
     AppWeatherComponent,
     AppProfileComponent,
     AppFavHotelsComponent,
-    FavHotelItemComponent
+    FavHotelItemComponent,
+    HotelsDetailsComponent
     //CommonModule
 
   ],

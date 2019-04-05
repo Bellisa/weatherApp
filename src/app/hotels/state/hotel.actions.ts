@@ -9,32 +9,27 @@ export enum HotelActionTypes {
   SetSelectedHotel = '[Hotel] Set Selected Hotel',
   ClearSelectedHotel = '[Hotel] Clear Selected Hotel',
   InitializeSelectedHotel = '[Hotel] Initialize Selected Hotel',
-
   Load = '[Hotel] Load',
   LoadSuccess = '[Hotel] Load Success',
   LoadFail = '[Hotel] Load Fail',
-
   LoadCount = '[Hotel] Load Count',
   LoadCountSuccess = '[Hotel] Load Count Success',
   LoadCountFail = '[Hotel] Load Count Fail',
-
   UpdateHotel = '[Hotel] Update Hotel',
   UpdateHotelSuccess = '[Hotel] Update Hotel Success',
   UpdateHotelFail = '[Hotel] Update Hotel Fail',
-
   CreateHotel = '[Hotel] Create Hotel',
   CreateHotelSuccess = '[Hotel] Create Hotel Success',
   CreateHotelFail = '[Hotel] Create Hotel Fail',
-
   DeleteHotel = '[Hotel] Delete Hotel',
   DeleteHotelSuccess = '[Hotel] Delete Hotel Success',
   DeleteHotelFail = '[Hotel] Delete Hotel Fail',
-
   ClearInfo = '[Hotel] ClearInfo',
+  StartRefresh = "[Hotel] StartRefresh"
 }
 export enum FavoriteHotelActionTypes {
-    AddFavoriteHotel = '[Hotel] Add Favorite Hotel',
-    DeleteFavoriteHotel = '[Hotel] Delete Favorite Hotel',
+  AddFavoriteHotel = '[Hotel] Add Favorite Hotel',
+  DeleteFavoriteHotel = '[Hotel] Delete Favorite Hotel',
 }
 
 // Action Creators
@@ -49,12 +44,15 @@ export class InitializeSelectedHotel implements Action {
 }
 
 export class ClearSelectedHotel implements Action {
-    readonly type = HotelActionTypes.ClearSelectedHotel;
-  }
+  readonly type = HotelActionTypes.ClearSelectedHotel;
+}
 
-  export class ClearInfo implements Action {
-    readonly type = HotelActionTypes.ClearInfo;
-  }
+export class ClearInfo implements Action {
+  readonly type = HotelActionTypes.ClearInfo;
+}
+export class StartRefresh implements Action {
+  readonly type = HotelActionTypes.StartRefresh;
+}
 
 export class Load implements Action {
   readonly type = HotelActionTypes.Load;
@@ -146,15 +144,15 @@ export class DeleteHotelFail implements Action {
 }
 
 export class AddFavoriteHotel implements Action {
-    readonly type = FavoriteHotelActionTypes.AddFavoriteHotel;
-  
-    constructor(public payload: IFavHotel) { }
-  }
-  export class DeleteFavoriteHotel implements Action {
-    readonly type = FavoriteHotelActionTypes.DeleteFavoriteHotel;
-  
-    constructor(public payload: number) { }
-  }
+  readonly type = FavoriteHotelActionTypes.AddFavoriteHotel;
+
+  constructor(public payload: IFavHotel) { }
+}
+export class DeleteFavoriteHotel implements Action {
+  readonly type = FavoriteHotelActionTypes.DeleteFavoriteHotel;
+
+  constructor(public payload: number) { }
+}
 
 // Union the valid types
 export type HotelActions = SetSelectedHotel
@@ -175,8 +173,9 @@ export type HotelActions = SetSelectedHotel
   | DeleteHotel
   | DeleteHotelSuccess
   | DeleteHotelFail
-  | ClearInfo;
+  | ClearInfo
+  | StartRefresh;
 
-  export type FavoriteHotelActions =
+export type FavoriteHotelActions =
   AddFavoriteHotel
   | DeleteFavoriteHotel;

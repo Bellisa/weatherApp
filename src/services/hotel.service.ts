@@ -7,6 +7,7 @@ import { IHotel } from '../interfaces/IHotel';
 import { environment } from 'src/environments/environment';
 import { BaseService } from './base.service';
 import { IConfigData } from 'src/interfaces/IConfigData';
+import { UtilsService } from './utils.service';
 
 @Injectable({
   providedIn: 'root',
@@ -17,16 +18,16 @@ export class HotelService {
   constructor(private baseService: BaseService ) { }
 
   getHotels(data?:IConfigData): Observable<IHotel[]> {
-    return this.baseService.gets<IHotel>(this.hotelsUrl+this.baseService.getUrlQueryParam(data))
+    return this.baseService.gets<IHotel>(this.hotelsUrl+UtilsService.getUrlQueryParam(data))
       .pipe(
-        tap(data => console.log('getHotels: ' +(data.length))),//JSON.stringify(data)
+       // tap(data => console.log('getHotels: ' +(data.length))),//JSON.stringify(data)
         catchError(this.baseService.handleError)
       );
   }
   getHotel(id:number): Observable<IHotel> {
     return this.baseService.get<IHotel>(this.hotelsUrl,id)
       .pipe(
-       tap(data => console.log('getHotel:'+JSON.stringify(data))),
+       //tap(data => console.log('getHotel:'+JSON.stringify(data))),
         catchError(this.baseService.handleError)
       );
   }

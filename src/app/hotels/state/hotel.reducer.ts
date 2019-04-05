@@ -69,6 +69,7 @@ export function reducer(state = initialState, action: HotelActions | FavoriteHot
         case HotelActionTypes.LoadFail:
             return {
                 ...state,
+                loading: false,
                 hotels: [],
                 selectedHotelId: null,
                 error: action.payload
@@ -79,6 +80,7 @@ export function reducer(state = initialState, action: HotelActions | FavoriteHot
                 item => action.payload.id === item.id ? action.payload : item);
             return {
                 ...state,
+                loading: false,
                 hotels: updatedHotels,
                 // selectedHotelId: action.payload.id,
                 error: ''
@@ -87,6 +89,7 @@ export function reducer(state = initialState, action: HotelActions | FavoriteHot
         case HotelActionTypes.UpdateHotelFail:
             return {
                 ...state,
+                loading: false,
                 error: action.payload
             };
 
@@ -94,6 +97,7 @@ export function reducer(state = initialState, action: HotelActions | FavoriteHot
         case HotelActionTypes.CreateHotelSuccess:
             return {
                 ...state,
+                loading: false,
                 hotels: [...state.hotels, action.payload],
                 // currentProductId: action.payload.id,
                 error: ''
@@ -102,6 +106,7 @@ export function reducer(state = initialState, action: HotelActions | FavoriteHot
         case HotelActionTypes.CreateHotelFail:
             return {
                 ...state,
+                loading: false,
                 error: action.payload
             };
 
@@ -109,6 +114,7 @@ export function reducer(state = initialState, action: HotelActions | FavoriteHot
         case HotelActionTypes.DeleteHotelSuccess:
             return {
                 ...state,
+                loading: false,
                 hotels: state.hotels.filter(product => product.id !== action.payload),
                 // currentProductId: null,
                 error: ''
@@ -117,6 +123,7 @@ export function reducer(state = initialState, action: HotelActions | FavoriteHot
             const el = state.favoriteHotels.find(hoel => hoel.hotel.id === action.payload);
             return {
                 ...state,
+                loading: false,
                 favoriteHotels: state.favoriteHotels.filter(hotel => hotel.hotel.id !== action.payload),
                 information: `Hotel '${el.hotel.title}' was delete from favorite!`,
                 error: ''
@@ -127,6 +134,7 @@ export function reducer(state = initialState, action: HotelActions | FavoriteHot
             fav.push(action.payload);
             return {
                 ...state,
+                loading: false,
                 favoriteHotels: fav,
                 information: `Hotel '${action.payload.hotel.title}' was added from favorite!`,
                 error: ''
@@ -135,11 +143,13 @@ export function reducer(state = initialState, action: HotelActions | FavoriteHot
         case HotelActionTypes.DeleteHotelFail:
             return {
                 ...state,
+                loading: false,
                 error: action.payload
             };
             case HotelActionTypes.ClearInfo:
             return {
                 ...state,
+                loading: false,
                 information: ''
             };
 

@@ -6,10 +6,11 @@ import { Store, select } from '@ngrx/store';
 
 import * as fromHotel from './state';
 import * as hotelActions from './state/hotel.actions';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { IConfigData } from 'src/interfaces/IConfigData';
 import { appSortType } from '../components/app.sort/appSortType';
 import { filterType } from '../components/app.filter.component/typeFilter';
+import { UtilsService } from 'src/services/utils.service';
 
 @Component({
   selector: 'app-hotels-page',
@@ -23,7 +24,7 @@ export class HotelsPageComponent implements OnInit {
   public favHotels$: Observable<IFavHotel[]>;
   public information$: Observable<string>;
   public isLoadingShow$: Observable<boolean>;
-
+public subscription:Subscription;
   public configPage: IConfigData = {
     filter: null,
     sort: null,
@@ -47,6 +48,17 @@ export class HotelsPageComponent implements OnInit {
     this.store.dispatch(new hotelActions.LoadCount(this.configPage));
   }
   ngOnInit(): void {
+  /*  this.subscription = this.activatedRoute.queryParamMap.subscribe((data: ParamMap) => {
+      this.configPage = {
+        ...this.configPage,
+        page: {
+          pageNumber: Number(data.get('_page')) || 1,
+          pageLimit: Number(data.get('_limit')) || 5
+        },
+
+      };
+      this.RefreshStore();
+     });*/
 
     this.RefreshStore();
 
@@ -81,20 +93,23 @@ export class HotelsPageComponent implements OnInit {
   }
 
   public pageChange(ev: number) {
-    console.log(ev);
     this.configPage.page.pageNumber = ev;
     this.RefreshStore();
+    console.log(JSON.stringify(UtilsService.getUrlObjectQueryParam(this.configPage)));
+    //this.navigateRoute();
   }
 
   public changeSort(sort: appSortType) {
     this.configPage.sort = { ...sort };
     this.RefreshStore();
+    //this.navigateRoute();
   }
 
   public changeFilter(filter: filterType) {
     this.configPage.filter = null;
     if (filter.text.length == 0 && filter.star == 0) {      
       this.RefreshStore();
+     //this.navigateRoute();
       return;
     }
     this.configPage.filter=[];
@@ -106,7 +121,19 @@ export class HotelsPageComponent implements OnInit {
     if (filter.star > 0) {
       this.configPage.filter.push({field:'stars',text:filter.star.toString()});
     }
-
+    //this.navigateRoute();
     this.RefreshStore();
+  }
+
+  private navigateRoute(){
+    this.router.navigate(
+      [],
+      {
+        relativeTo: this.activatedRoute,
+        queryParams: {
+         ...UtilsService.getUrlObjectQueryParam(this.configPage)
+        },
+        queryParamsHandling: 'merge', // remove to replace all query params by provided
+      });
   }
 }
