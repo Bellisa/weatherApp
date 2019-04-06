@@ -24,7 +24,9 @@ export class HotelsPageComponent implements OnInit {
   public favHotels$: Observable<IFavHotel[]>;
   public information$: Observable<string>;
   public isLoadingShow$: Observable<boolean>;
+
 public subscription:Subscription;
+
   public configPage: IConfigData = {
     filter: null,
     sort: null,
@@ -48,17 +50,10 @@ public subscription:Subscription;
     this.store.dispatch(new hotelActions.LoadCount(this.configPage));
   }
   ngOnInit(): void {
-  /*  this.subscription = this.activatedRoute.queryParamMap.subscribe((data: ParamMap) => {
-      this.configPage = {
-        ...this.configPage,
-        page: {
-          pageNumber: Number(data.get('_page')) || 1,
-          pageLimit: Number(data.get('_limit')) || 5
-        },
-
-      };
+    this.subscription = this.activatedRoute.queryParamMap.subscribe((data: ParamMap) => {
+      this.configPage = {...UtilsService.setConfigDataByParam(data,this.configPage)};
       this.RefreshStore();
-     });*/
+     });
 
     this.RefreshStore();
 
@@ -69,13 +64,10 @@ public subscription:Subscription;
     this.information$ = this.store.pipe(select(fromHotel.getInformation));
     this.selectedHotel$ = this.store.pipe(select(fromHotel.getSelectedHotel));
     this.favHotels$ = this.store.pipe(select(fromHotel.getFavoriteHoels));
-
-
   }
   public selectHotel(hotel: IHotel) {
     this.store.dispatch(new hotelActions.SetSelectedHotel(hotel));
   }
-
   public delFavHotel(hotel: IFavHotel) {
     this.store.dispatch(new hotelActions.DeleteFavoriteHotel(hotel.hotel.id));
   }
@@ -91,25 +83,24 @@ public subscription:Subscription;
       this.store.dispatch(new hotelActions.DeleteFavoriteHotel(event.hotel.id));
     }
   }
-
   public pageChange(ev: number) {
     this.configPage.page.pageNumber = ev;
-    this.RefreshStore();
+    //this.RefreshStore();
     console.log(JSON.stringify(UtilsService.getUrlObjectQueryParam(this.configPage)));
-    //this.navigateRoute();
+    this.navigateRoute();
   }
-
   public changeSort(sort: appSortType) {
     this.configPage.sort = { ...sort };
-    this.RefreshStore();
-    //this.navigateRoute();
+   // this.RefreshStore();
+    this.navigateRoute();
   }
-
   public changeFilter(filter: filterType) {
+    
     this.configPage.filter = null;
-    if (filter.text.length == 0 && filter.star == 0) {      
-      this.RefreshStore();
-     //this.navigateRoute();
+    
+    if (filter.text === "" && filter.star == 0) {
+     this.navigateRoute();
+     console.log('fffffffffff'+(filter.text ==="")+ '+'  +(filter.star == 0));
       return;
     }
     this.configPage.filter=[];
@@ -121,11 +112,14 @@ public subscription:Subscription;
     if (filter.star > 0) {
       this.configPage.filter.push({field:'stars',text:filter.star.toString()});
     }
-    //this.navigateRoute();
-    this.RefreshStore();
+    this.navigateRoute();
+    //this.RefreshStore();
   }
+private getSort(){
 
+}
   private navigateRoute(){
+    console.log('navigateRoute'+JSON.stringify(UtilsService.getUrlObjectQueryParam(this.configPage)));
     this.router.navigate(
       [],
       {

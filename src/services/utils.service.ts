@@ -5,6 +5,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { IConfigData } from 'src/interfaces/IConfigData';
 import { isNullOrUndefined } from 'util';
 import { isEmpty } from 'rxjs/operators';
+import { ParamMap } from '@angular/router';
 
 
 @Injectable({
@@ -61,6 +62,34 @@ export class UtilsService {
         }
         console.log('end url:' + JSON.stringify(url));
         return url;
+    }
+
+    public static setConfigDataByParam(params: ParamMap,configPage: IConfigData): IConfigData {
+        
+       
+        // filter
+        if (params.has('title_like')) {
+            configPage.filter=[];
+            configPage.filter.push({field: 'title', text: params.get('title_like')})   ;         
+        }
+        if (params.has('stars_like')) {
+            if(configPage.filter==null){
+                configPage.filter=[];
+            }
+            configPage.filter.push({field: 'stars', text: params.get('stars_like')}) 
+        }
+        // sort
+        if (params.has('_sort') && params.has('_order')) {
+            configPage.sort.fieldName = params.get('_sort');
+            configPage.sort.ask = (params.get('_order').toLowerCase()==='ask')?true:false;
+
+        }
+        if(params.has('_page') && params.has('_limit')){
+            configPage.page.pageNumber = Number(params.get('_page')) | 1;
+            configPage.page.pageLimit = Number(params.get('_limit')) | 5;
+        }
+        console.log('end configPage:' + JSON.stringify(configPage));
+        return configPage;
     }
 
 
