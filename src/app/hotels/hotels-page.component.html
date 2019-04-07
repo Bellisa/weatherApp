@@ -14,16 +14,15 @@
 
         <div class="list-group">
 
-          <app-app-hotel-list-component
+          <hotel-list-component
             (hotelClick)="selectHotel($event)"
             [activeItemId]="(selectedHotel$ | async)?(selectedHotel$ | async).id:-1" 
             [hotels]="hotels$ | async"
             [favHotels]="favHotels$ | async" 
             (favClicked)="favClick($event)"
             (filter)="changeFilter($event)"
-            (appSort)="changeSort($event)">
-            
-        </app-app-hotel-list-component>
+            (appSort)="changeSort($event)">            
+          </hotel-list-component>
           
           <ngb-pagination
           [collectionSize]="countPage$ | async" 

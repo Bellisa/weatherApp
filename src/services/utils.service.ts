@@ -40,7 +40,7 @@ export class UtilsService {
         queryP.length > 0 ? query += `&${queryP}` : '';
         // console.log('query1:' + query);
         query.length > 0 ? query = `?${query.substring(1)}` : query;
-        console.log('end query:' + query);
+       // console.log('end query:' + query);
         return query;
     }
     public static getUrlObjectQueryParam(params: IConfigData): { [key: string]: any } {
@@ -60,7 +60,7 @@ export class UtilsService {
             url[`_page`] = params.page.pageNumber;
             url[`_limit`] = params.page.pageLimit;
         }
-        console.log('end url:' + JSON.stringify(url));
+        //console.log('end url:' + JSON.stringify(url));
         return url;
     }
 
@@ -85,10 +85,10 @@ export class UtilsService {
 
         }
         if(params.has('_page') && params.has('_limit')){
-            configPage.page.pageNumber = Number(params.get('_page')) | 1;
-            configPage.page.pageLimit = Number(params.get('_limit')) | 5;
+            configPage.page.pageNumber = Number(params.get('_page'));
+            configPage.page.pageLimit = Number(params.get('_limit'));
         }
-        console.log('end configPage:' + JSON.stringify(configPage));
+       // console.log('end configPage:' + JSON.stringify(configPage));
         return configPage;
     }
 

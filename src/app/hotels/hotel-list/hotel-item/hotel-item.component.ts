@@ -2,11 +2,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IHotel } from '../../../../interfaces/IHotel';
 
 @Component({
-  selector: 'app-app-hotel-item',
-  templateUrl: './app.hotel.item.component.html',
-  styleUrls: ['./app.hotel.item.component.css']
+  selector: 'hotel-item',
+  templateUrl: './hotel-item.component.html',
+  styleUrls: ['./hotel-item.component.css']
 })
-export class AppHotelItemComponent {
+export class HotelItemComponent {
   @Input()
   public hotel: IHotel;
   @Input()

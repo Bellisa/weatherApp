@@ -1,6 +1,6 @@
 .alertPos {
-  width: 300px;
-  max-width: 300px;
+  width: 400px;
+  max-width: 500px;
   overflow-x: hidden;
   overflow-y: auto;
   position: fixed;
@@ -9,6 +9,6 @@
   bottom: 0;
   left: 0;
   z-index: 1040;
-  height: 150px;
-  max-height: 80px;
+  height: 250px;
+  max-height: 180px;
 }

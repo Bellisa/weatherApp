@@ -8,7 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 
-import { AppHotelListComponentComponent } from './app.hotel.list.component/app.hotel.list.component.component';
+import { HotelListComponent } from './hotel-list/hotel-list.component';
 import { AppFilterComponentComponent } from '../components/app.filter.component/app.filter.component.component';
 import { FilterPipe } from '../components/pipes/filter.pipe';
 import { SortingPipe } from '../components/pipes/sorting.pipe';
@@ -17,42 +17,47 @@ import { AppFavHotelsComponent } from '../favHotels/app.fav.hotels/app.fav.hotel
 import { FavHotelItemComponent } from '../favHotels/app.fav.hotels/fav.hotel.item/fav.hotel.item.component';
 import { ShortDescriptionPipe } from '../components/pipes/short-description.pipe';
 import { NgbAlertComponent } from '../components/ngb-alert/ngb-alert.component';
-import { AppHotelItemComponent } from './app.hotel.list.component/app.hotel.item/app.hotel.item.component';
+import { HotelItemComponent } from './hotel-list/hotel-item/hotel-item.component';
 import { SelectedHotelComponent } from './selected-hotel/selected-hotel.component';
 import { HotelsPageComponent } from './hotels-page.component';
 import { AppWeatherComponent } from '../components/app.weather/app.weather.component';
 import { AppProfileComponent } from '../components/app.profile/app.profile.component';
 import { HotelsDetailsComponent } from './hotels-details/hotels-details.component';
+import { HotelAddEditComponent } from './hotel-add-edit/hotel-add-edit.component';
+import { HotelsComponent } from "./hotels/HotelsComponent";
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
    ShortDescriptionPipe,
    AppFilterComponentComponent,
-   // FilterPipe,
-  //  SortingPipe,
-    NgbAlertComponent, 
+   NgbAlertComponent, 
     AppSortComponent,
-    AppHotelItemComponent,
-    AppHotelListComponentComponent,
+    HotelItemComponent,
+    HotelListComponent,
     SelectedHotelComponent,
     HotelsPageComponent,
     AppWeatherComponent,
     AppProfileComponent,
     AppFavHotelsComponent,
     FavHotelItemComponent,
-    HotelsDetailsComponent
-    //CommonModule
+    HotelsDetailsComponent,
+    HotelAddEditComponent,
+    HotelsComponent
 
   ],
   imports: [
     CommonModule,
     StoreModule.forFeature('hotels', reducer),
     EffectsModule.forFeature([HotelEffects]),
-    FormsModule,
     NgbModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule,
   ],
-  exports: [HotelsPageComponent]
+  exports: [
+    HotelsComponent,
+    HotelsPageComponent
+  ]
 })
 export class HotelModule { }

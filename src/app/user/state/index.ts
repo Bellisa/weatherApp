@@ -10,9 +10,9 @@ export interface State  {
   users: fromUser.UserState;
 }
 // Selector functions
-const getProductFeatureState = createFeatureSelector<fromUser.UserState>('users');
+const getUserFeatureState = createFeatureSelector<fromUser.UserState>('users');
 
 export const getCurentUser = createSelector(
-  getProductFeatureState,
+  getUserFeatureState,
   state => state.currentUser
 );

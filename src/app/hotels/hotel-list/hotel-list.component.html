@@ -4,7 +4,7 @@
 
 <app-sort (sortEvent)="sortedHotels($event)"></app-sort>
 
-<app-app-hotel-item 
+<hotel-item 
   *ngFor="let hotel of (hotels );
    even as myEven; "
   (hotelClickEvent)="selectedHotel(hotel)" 
@@ -14,4 +14,4 @@
   [addedFav]="isAddedToFav(hotel)"
   (favClickEvent)="favAddDelClick($event)"
  >
-</app-app-hotel-item>
+</hotel-item>

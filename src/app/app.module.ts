@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 //import { AppFavHotelsComponent } from './favHotels/app.fav.hotels/app.fav.hotels.component';
 //import { FavHotelItemComponent } from './favHotels/app.fav.hotels/fav.hotel.item/fav.hotel.item.component';
 
@@ -18,22 +19,26 @@ import { reducer, HotelState } from './hotels/state/hotel.reducer';
 import { HttpClientModule } from '@angular/common/http';
 
 import { from } from 'rxjs';
-import { AppRoutingModule } from './app-routing.module';
 import { UserModule } from './user/user.module';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { Routes, RouterModule } from '@angular/router';
 import { HotelsPageComponent } from './hotels/hotels-page.component';
-
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { HomeComponent } from './home/home.component';
+import { AppRoutingModule } from './app-routing.module';
+import { NgbAlertComponent } from './components/ngb-alert/ngb-alert.component';
+import { reducerRoot } from './state/root.reducer';
 
 @NgModule({
   declarations: [
-    AppComponent,    
-    HeaderComponent, 
-    FooterComponent, 
-    PageNotFoundComponent,
-    //HotelsPageComponent
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    PageNotFoundComponent, 
+    HomeComponent, 
   ],
   imports: [
     CommonModule,
@@ -41,16 +46,18 @@ import { HotelsPageComponent } from './hotels/hotels-page.component';
     NgbModule,
     FormsModule,
     HotelModule,
-    StoreModule.forRoot({}),
+    //StoreModule.forRoot({}),
+    StoreModule.forRoot({ root: reducerRoot }),
     EffectsModule.forRoot([]),
     HttpClientModule,
-    
-     UserModule,
+    UserModule,
     ReactiveFormsModule,
-    //RouterModule.forRoot(routes)
-    AppRoutingModule,
+    //RouterModule.forRoot(routes),
+   AppRoutingModule,
+
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
-  
+
   providers: [],
   bootstrap: [AppComponent]
 })

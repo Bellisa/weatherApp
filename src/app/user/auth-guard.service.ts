@@ -18,11 +18,13 @@ export class AuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     let loggin = this.checkLoggedIn(state.url);
 
-    console.log(' loggin ' + route.url + ' login:' + loggin);
+    console.log(' loggin route:' + route.url + ' login:' + loggin);
+    console.log(' loggin state:' + state.url + ' login:' + loggin);
     let urlSnap = route.url;
     if (urlSnap.length > 1 && urlSnap[1].toString() === 'edit') {
       if (loggin) { return true; }
       else {
+
         this.router.navigate(['/login']);
         return false;
 
@@ -43,7 +45,7 @@ export class AuthGuard implements CanActivate {
     if (this.authService.isLoggedIn()) {
       return true;
     }
-
+   // /hotels/1/edit
     // Retain the attempted URL for redirection
     //this.authService.redirectUrl = url;
     //this.router.navigate(['/login']);

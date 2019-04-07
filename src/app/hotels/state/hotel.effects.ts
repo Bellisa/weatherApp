@@ -20,11 +20,10 @@ export class HotelEffects {
 
     @Effect()
     loadHotels$: Observable<Action> = this.actions$.pipe(
-        delay(3000),
         ofType(hotelActions.HotelActionTypes.Load),
         map((action: hotelActions.Load) => action.payload),
         mergeMap((conf: IConfigData) =>{
-        console.log('Effect:'+JSON.stringify(conf));
+       // console.log('Effect:'+JSON.stringify(conf));
              return this.hotelService.getHotels(conf).pipe(
                 map(hotels => {
 
@@ -36,15 +35,14 @@ export class HotelEffects {
         )
     );
     @Effect()
-    loadHotelsCount$: Observable<Action> = this.actions$.pipe(
-        delay(3000),
+    loadHotelsCount$: Observable<Action> = this.actions$.pipe(       
         ofType(hotelActions.HotelActionTypes.LoadCount),
         map((action: hotelActions.LoadCount) => action.payload),
         mergeMap((conf: IConfigData)=>{
             //conf.page=null;
              return this.hotelService.getHotels({...conf,page:null}).pipe(
                 map(hotels => {
-                    console.log(conf + ' action  ' + hotels)
+                  //  console.log(conf + ' action  ' + hotels)
                     return (new hotelActions.LoadCountSuccess(hotels ? hotels.length : 0))
                 }),
                 catchError(err => of(new hotelActions.LoadCountFail(err)))

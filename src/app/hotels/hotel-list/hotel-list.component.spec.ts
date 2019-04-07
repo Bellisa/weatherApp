@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AppHotelListComponentComponent } from './app.hotel.list.component.component';
+import { AppHotelListComponentComponent } from './hotel-list.component';
 
 describe('App.Hotel.List.ComponentComponent', () => {
   let component: AppHotelListComponentComponent;

@@ -4,10 +4,10 @@ import { IHotel } from 'src/interfaces/IHotel';
 import { IFavHotel } from 'src/interfaces/IFavHotel';
 import { of, Observable } from 'rxjs';
 import { debounceTime, delay } from 'rxjs/operators';
-import * as fromHotel from './hotels/state';
+import * as fromRoot from './state';
 import { Store, select } from '@ngrx/store';
-import * as hotelActions from './hotels/state/hotel.actions';
-import { HotelState } from './hotels/state/hotel.reducer';
+import * as rootActions from './state/root.actions';
+import { RootState } from './state/root.reducer';
 
 @Component({
   selector: 'app-root',
@@ -16,14 +16,10 @@ import { HotelState } from './hotels/state/hotel.reducer';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
-
-
-  constructor(private store: Store<fromHotel.State>) {
-
+  constructor() {
   }
 
-  ngOnInit(): void {
-   
+  ngOnInit(): void {    
   }
 }
 

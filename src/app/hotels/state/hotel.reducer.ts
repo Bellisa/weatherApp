@@ -57,8 +57,7 @@ export function reducer(state = initialState, action: HotelActions | FavoriteHot
                 selectedHotelId: action.payload&&action.payload.length>0?action.payload[0].id:0,
                 error: ''
             };
-            case HotelActionTypes.LoadCountSuccess:
-            console.log('start state'+action.type+' : ',state,action+":"+action.payload);
+            case HotelActionTypes.LoadCountSuccess:          
             return {
                 ...state,
                 loading: false,

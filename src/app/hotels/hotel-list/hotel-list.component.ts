@@ -6,17 +6,20 @@ import { IFavHotel } from 'src/interfaces/IFavHotel';
 import { isNullOrUndefined } from 'util';
 
 @Component({
-  selector: 'app-app-hotel-list-component',
-  templateUrl: './app.hotel.list.component.component.html',
-  styleUrls: ['./app.hotel.list.component.component.css']
+  selector: 'hotel-list-component',
+  templateUrl: './hotel-list.component.html',
+  styleUrls: ['./hotel-list.component.css']
 })
-export class AppHotelListComponentComponent {
+export class HotelListComponent {
   @Input()
   public hotels: IHotel[];
   @Input()
   public favHotels: IFavHotel[];
   @Input()
   public activeItemId: number;
+
+  @Input()
+  public canEdit: boolean;
 
   @Output()
   public hotelClick: EventEmitter<IHotel> = new EventEmitter();

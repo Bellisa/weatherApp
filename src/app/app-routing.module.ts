@@ -9,12 +9,30 @@ import { LoginComponent } from './user/login.component';
 import { RegistrationComponent } from './user/registration/registration.component';
 import { AuthGuard } from './user/auth-guard.service';
 import { UserModule } from './user/user.module';
+import { HotelsDetailsComponent } from './hotels/hotels-details/hotels-details.component';
+import { HotelAddEditComponent } from './hotels/hotel-add-edit/hotel-add-edit.component';
+import { HotelsComponent } from "./hotels/hotels/HotelsComponent";
+import { HomeComponent } from './home/home.component';
 export const routes: Routes = [
   {
-    path: '', redirectTo: 'hotels', pathMatch: 'full'
+    path: '', redirectTo: 'home', pathMatch: 'full'
   },
   {
-    path: 'hotels', component: HotelsPageComponent
+    path: 'home', component: HomeComponent
+  },
+  {
+    path: 'hotels', component: HotelsComponent,
+    children: [
+      {
+        path: '', component: HotelsPageComponent, pathMatch: 'full'
+      },
+      {
+        path: ':hotelID', component: HotelsDetailsComponent, pathMatch: 'full'
+      },
+      {
+        path: ':hotelID/:mode', component: HotelAddEditComponent, canActivate: [AuthGuard]
+      }
+    ] 
   },
   {
     path: 'login', component: LoginComponent

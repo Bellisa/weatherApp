@@ -11,6 +11,7 @@ import { IConfigData } from 'src/interfaces/IConfigData';
 import { appSortType } from '../components/app.sort/appSortType';
 import { filterType } from '../components/app.filter.component/typeFilter';
 import { UtilsService } from 'src/services/utils.service';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-hotels-page',
@@ -85,13 +86,10 @@ public subscription:Subscription;
   }
   public pageChange(ev: number) {
     this.configPage.page.pageNumber = ev;
-    //this.RefreshStore();
-    console.log(JSON.stringify(UtilsService.getUrlObjectQueryParam(this.configPage)));
     this.navigateRoute();
   }
   public changeSort(sort: appSortType) {
     this.configPage.sort = { ...sort };
-   // this.RefreshStore();
     this.navigateRoute();
   }
   public changeFilter(filter: filterType) {
@@ -100,26 +98,23 @@ public subscription:Subscription;
     
     if (filter.text === "" && filter.star == 0) {
      this.navigateRoute();
-     console.log('fffffffffff'+(filter.text ==="")+ '+'  +(filter.star == 0));
       return;
     }
     this.configPage.filter=[];
     if (filter.text.length > 0) {
 
       this.configPage.filter.push({field:'title',text:filter.text})
-      //this.configPage.filter.push({field:'description',text:filter.text});
     }
     if (filter.star > 0) {
       this.configPage.filter.push({field:'stars',text:filter.star.toString()});
     }
     this.navigateRoute();
-    //this.RefreshStore();
   }
 private getSort(){
 
 }
   private navigateRoute(){
-    console.log('navigateRoute'+JSON.stringify(UtilsService.getUrlObjectQueryParam(this.configPage)));
+   // console.log('navigateRoute'+JSON.stringify(UtilsService.getUrlObjectQueryParam(this.configPage)));
     this.router.navigate(
       [],
       {
@@ -127,7 +122,7 @@ private getSort(){
         queryParams: {
          ...UtilsService.getUrlObjectQueryParam(this.configPage)
         },
-        queryParamsHandling: 'merge', // remove to replace all query params by provided
+       // queryParamsHandling: null, // 'merge'remove to replace all query params by provided
       });
   }
 }
