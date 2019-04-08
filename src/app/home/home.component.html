@@ -1,3 +1,11 @@
-<p>
-  home works!
-</p>
+<div class="container content">
+  
+  <div class="row mb-2">
+      <ngb-carousel *ngIf="randomHotels" class="carousel slide" [showNavigationArrows]="showNavigationArrows" [showNavigationIndicators]="showNavigationIndicators">
+        <ng-template ngbSlide *ngFor="let hotel of randomHotels">
+            <app-hotel-carousel [hotel]="hotel">
+            </app-hotel-carousel>                  
+        </ng-template>
+      </ngb-carousel>   
+  </div>
+</div>

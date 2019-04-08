@@ -57,7 +57,8 @@ import { RouterModule } from '@angular/router';
   ],
   exports: [
     HotelsComponent,
-    HotelsPageComponent
+    HotelsPageComponent,
+    SelectedHotelComponent
   ]
 })
 export class HotelModule { }

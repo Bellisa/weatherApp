@@ -31,6 +31,7 @@ import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbAlertComponent } from './components/ngb-alert/ngb-alert.component';
 import { reducerRoot } from './state/root.reducer';
+import { HotelCarouselComponent } from './home/hotel-carousel/hotel-carousel.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { reducerRoot } from './state/root.reducer';
     HeaderComponent,
     FooterComponent,
     PageNotFoundComponent, 
-    HomeComponent, 
+    HomeComponent, HotelCarouselComponent, 
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,11 @@
+<div *ngIf="hotel" class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
+    <div class="row mb-2">
+    <div class="col-md-5 px-0">
+      <h1 class="display-4 font-italic">{{hotel.title}}</h1>
+      <p class="lead my-3">{{hotel.description}}</p>
+      <p class="lead mb-0"><a [routerLink]="['/hotels',hotel.id]" class="text-white font-weight-bold">Continue reading...</a></p>
+    </div>
+    <div class="col-md-7  px-0 float-right">
+        <img src="{{hotel.picture}}" alt="..." class="rounded m-1" />
+    </div>
+  </div></div>

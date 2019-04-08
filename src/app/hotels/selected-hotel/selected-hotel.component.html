@@ -1,7 +1,7 @@
 <div *ngIf="selectedHotel" class="card mb-4 shadow-sm">
   <img src="{{selectedHotel.picture}}" alt="..." class="rounded-top" />
   <div class="card-body">
-    <h2>{{selectedHotel.title}}</h2>
+    <h2 [routerLink]="['/hotels',selectedHotel.id]">{{selectedHotel.title}}</h2>
     <small> <span *ngFor='let key of  [1,2,3,4,5]' class="fa fa-star" [ngClass]="{'checked': key <= selectedHotel.stars}">
       </span></small>
     <p class="card-text">{{selectedHotel.description}}</p>
