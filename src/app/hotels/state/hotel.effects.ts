@@ -50,6 +50,22 @@ export class HotelEffects {
         }
         )
     );
+    @Effect()
+    getHotelById$: Observable<Action> = this.actions$.pipe(       
+        ofType(hotelActions.HotelActionTypes.GetHotelById),
+        map((action: hotelActions.GetHotelById) => action.payload),
+        mergeMap((id: number)=>{
+            //conf.page=null;
+             return this.hotelService.getHotel(id).pipe(
+                map(hotels => {
+                  //  console.log(conf + ' action  ' + hotels)
+                    return (new hotelActions.GetHotelByIdSuccess(hotels))
+                }),
+                catchError(err => of(new hotelActions.GetHotelByIdFail(err)))
+            )
+        }
+        )
+    );
 
     @Effect()
     updateHotel$: Observable<Action> = this.actions$.pipe(

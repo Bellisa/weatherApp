@@ -22,6 +22,11 @@ export const getLoading = createSelector(
     state => state.loading
 );
 
+export const getHotel = createSelector(
+    getHotelFeatureState,
+    state => state.hotel
+);
+
 export const getSelectedHotel = createSelector(
     getHotelFeatureState,
     getSelectedHotelId,

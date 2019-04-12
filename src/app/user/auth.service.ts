@@ -14,11 +14,17 @@ export class AuthService implements OnInit, OnDestroy {
     public currentUser: IUser;
     private subUser: Subscription;
 
-    constructor(private store: Store<fromUser.State>) { }
+    constructor(private store: Store<fromUser.State>) { 
+        this.subUser = this.store.pipe(select(fromUser.getCurentUser))
+            .subscribe((val: IUser) => { 
+                this.currentUser = val; 
+                console.log('set user '+val)
+            });
+    }
     
     ngOnInit(): void {
-        this.subUser = this.store.pipe(select(fromUser.getCurentUser))
-            .subscribe((val: IUser) => { this.currentUser = val; });
+        console.log('on init')
+        
     }
     ngOnDestroy(): void {
         this.subUser.unsubscribe();
@@ -28,13 +34,16 @@ export class AuthService implements OnInit, OnDestroy {
     }
 
     login(userName: string, password: string): void {
+        console.log('login user '+userName)
         this.store.dispatch(new userActions.LoadUser(userName, password))
     }
 
-    logout(): void {
+    logout(): void { 
+        console.log('clearUser:'+this.currentUser);
         if (this.currentUser)
             {
-                this.store.dispatch(new userActions.DeleteUser(this.currentUser.id))
+               
+                this.store.dispatch(new userActions.ClearUserSuccess)
             }
     }
 }

@@ -28,6 +28,12 @@ export function reducer(state = initialState, action: UserActions): UserState {
         ...state,
         currentUser: null
       };
+      case UserActionTypes.ClearUserSuccess:
+      console.log('set reduser clearUser');
+      return {
+        ...state,
+        currentUser: null
+      };
       case UserActionTypes.UpdateUserSuccess:
       return {
         ...state,

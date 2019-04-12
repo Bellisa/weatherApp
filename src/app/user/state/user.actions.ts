@@ -15,6 +15,8 @@ export enum UserActionTypes {
   CreateUserSuccess = '[User] Create User Success',
   CreateUserFail = '[User] Create User Fail',
 
+  ClearUserSuccess = '[User] Clear User Success',
+
   DeleteUser = '[User] Delete User',
   DeleteUserSuccess = '[User] Delete User Success',
   DeleteUserFail = '[User] Delete User Fail',
@@ -44,6 +46,10 @@ export class UpdateUserSuccess implements Action {
 export class UpdateUserFail implements Action {
   readonly type = UserActionTypes.UpdateUserFail;
   constructor(public payload: string) { }
+}
+///////////////////////
+export class ClearUserSuccess implements Action {
+  readonly type = UserActionTypes.ClearUserSuccess;
 }
 //////////////////////
 export class CreateUser implements Action {
@@ -88,4 +94,5 @@ export type UserActions = LoadUserSuccess
 | DeleteUser
 | DeleteUserSuccess
 | DeleteUserFail
+| ClearUserSuccess
 ;

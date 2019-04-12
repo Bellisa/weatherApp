@@ -1,3 +1,155 @@
-<p>
-  hotel-add-edit works!
-</p>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+      {{pageTitle}}
+  </div>
+
+  <div class="panel-body">
+      <form class="form-horizontal"
+            novalidate
+            (ngSubmit)="saveHotel()"
+            [formGroup]="hotelForm" >
+          <fieldset>
+              <div class="form-group" 
+                   [ngClass]="{'has-error': displayMessage.title }">
+                  <label class="col-md-2 control-label" for="titleId">Name</label>
+
+                  <div class="col-md-8">
+                      <input class="form-control" 
+                              id="titleId" 
+                              type="text" 
+                              placeholder="Title (required)" 
+                              formControlName="title" />
+                      <span class="help-block" *ngIf="displayMessage.title">
+                              {{displayMessage.title}}
+                      </span>
+                  </div>
+              </div>
+              
+              <div class="form-group" 
+                   [ngClass]="{'has-error': displayMessage.description}">
+                  <label class="col-md-2 control-label" for="descriptionId">Description</label>
+
+                  <div class="col-md-8">
+                      <input class="form-control" 
+                              id="descriptionId" 
+                              type="text" 
+                              placeholder="Code (required)" 
+                              formControlName="description" />
+                      <span class="help-block" *ngIf="displayMessage.description">
+                              {{displayMessage.description}}
+                      </span>
+                  </div>
+              </div>
+
+              <div class="form-group" 
+                   [ngClass]="{'has-error': displayMessage.address}">
+                  <label class="col-md-2 control-label" for="addressId">Address</label>
+
+                  <div class="col-md-8">
+                      <input class="form-control" 
+                              id="addressId" 
+                              type="text" 
+                              placeholder="Code (required)" 
+                              formControlName="address" />
+                      <span class="help-block" *ngIf="displayMessage.address">
+                              {{displayMessage.address}}
+                      </span>
+                  </div>
+              </div>
+
+              <div class="form-group" 
+                   [ngClass]="{'has-error': displayMessage.phone}">
+                  <label class="col-md-2 control-label" for="phoneId">Phone</label>
+
+                  <div class="col-md-8">
+                      <input class="form-control" 
+                              id="phoneId" 
+                              type="text"                               
+                              placeholder="Code (required)" 
+                              formControlName="phone" />
+                      <span class="help-block" *ngIf="displayMessage.phone">
+                              {{displayMessage.phone}}
+                      </span>
+                  </div>
+              </div>
+              <div class="form-group" 
+                   [ngClass]="{'has-error': displayMessage.picture}">
+                  <label class="col-md-2 control-label" for="pictureId">Picture</label>
+
+                  <div class="col-md-8">
+                      <input class="form-control" 
+                              id="pictureId" 
+                              type="text"                               
+                              placeholder="Code (required)" 
+                              formControlName="picture" />
+                      <span class="help-block" *ngIf="displayMessage.picture">
+                              {{displayMessage.picture}}
+                      </span>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label class="col-md-2 control-label" for="starId">Star Rating (1-5)</label>
+                 
+                  <div class="col-md-8">
+                    <select id="starId" formControlName="stars"  class="form-control">
+                      <option disabled value="null">выберите</option>
+                      <option *ngFor="let numstar of [1,2,3,4,5]">{{numstar}}</option>
+                    </select>                 
+                  </div>
+              </div>
+              
+              <div formArrayName="photos">
+                  <div class="row">
+                      <button class="col-md-offset-1 col-md-1 btn btn-default"
+                              type="button"
+                              (click)="addTag()">Add image
+                      </button>
+                  </div>
+                  <div class="form-group"
+                      *ngFor="let tag of photos.controls; let i=index" >
+                      <label class="col-md-2 control-label" [attr.for]="i">Tag</label>
+
+                      <div class="col-md-8">
+                          <input class="form-control" 
+                                  [id]="i" 
+                                  type="text" 
+                                  placeholder="Tag" 
+                                  [formControlName]="i" />
+                      </div>
+                  </div>
+              </div>
+
+
+              <div class="form-group">
+                  <div class="col-md-4 col-md-offset-2">
+                      <span>
+                          <button class="btn btn-primary"
+                                  type="submit"
+                                  style="width:80px;margin-right:10px"
+                                  [disabled]='!hotelForm.valid'>
+                              Save
+                          </button>
+                      </span>
+                      <span>
+                          <a class="btn btn-default"
+                             style="width:80px"
+                             [routerLink]="['/hotels']">
+                              Cancel
+                          </a>
+                      </span>
+                      <span>
+                          <a class="btn btn-default"
+                             style="width:80px"
+                             (click)="deleteHotel()">
+                              Delete
+                          </a>
+                      </span>       
+                   </div>
+              </div>
+          </fieldset>
+      </form>
+      <div class='has-error' *ngIf='errorMessage'>{{errorMessage}}</div>
+  </div>
+
+</div>

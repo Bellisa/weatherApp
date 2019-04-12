@@ -24,6 +24,7 @@ export class UserInfoComponent implements OnInit {
   }
 
   logOut():void{
+   console.log('click logout'+this.currentUser$);
     this.authService.logout();
     this.router.navigate(['/login']);
   }

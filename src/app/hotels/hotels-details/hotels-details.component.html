@@ -1,3 +1,23 @@
-<p>
-  hotels-details works!
-</p>
+<div *ngIf="(hotel$ | async)" class="jumbotron p-md-5 text-white rounded-l rounded-r rounded-t bg-dark bg" [ngStyle]="{'background-image':'url('+(hotel$ | async).picture+')','min-height': '300px'}">
+    <div class="col-md-6 px-0"> 
+    </div>
+  </div>
+  <div *ngIf="(hotel$ | async)" class="jumbotron p-4 m-0">
+      <h1>{{(hotel$ | async).title}}</h1>
+      <small> <span *ngFor='let key of  [1,2,3,4,5]' class="fa fa-star" [ngClass]="{'checked': key <= (hotel$ | async).stars}">
+        </span></small>
+      <p class="card-text">{{(hotel$ | async).description}}</p>
+      <h6>address: {{(hotel$ | async).address}}</h6>
+      <h6>phone: {{(hotel$ | async).phone}}</h6>
+      <img *ngFor='let photo of  (hotel$ | async).photos' src="{{photo}}" class="rounded float-center mr-3" alt="{{photo}}"
+        width="200" />
+        <div class="mt-5">
+            <a class="btn btn-outline-primary"
+            [routerLink]="['/hotels']" 
+      routerLinkActive="active" 
+      [routerLinkActiveOptions]="{exact: true}" 
+            >Back to hotels list</a>
+        </div>
+    </div>
+      
+  

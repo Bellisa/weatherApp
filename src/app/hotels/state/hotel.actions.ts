@@ -12,9 +12,15 @@ export enum HotelActionTypes {
   Load = '[Hotel] Load',
   LoadSuccess = '[Hotel] Load Success',
   LoadFail = '[Hotel] Load Fail',
+
   LoadCount = '[Hotel] Load Count',
   LoadCountSuccess = '[Hotel] Load Count Success',
   LoadCountFail = '[Hotel] Load Count Fail',
+
+  GetHotelById = '[Hotel] Get Hotel By Id',
+  GetHotelByIdSuccess = '[Hotel] Get Hotel By Id Success',
+  GetHotelByIdFail = '[Hotel] Get Hotel By Id Fail',
+
   UpdateHotel = '[Hotel] Update Hotel',
   UpdateHotelSuccess = '[Hotel] Update Hotel Success',
   UpdateHotelFail = '[Hotel] Update Hotel Fail',
@@ -70,6 +76,24 @@ export class LoadFail implements Action {
 
   constructor(public payload: string) { }
 }
+///////////////////
+export class GetHotelById implements Action {
+  readonly type = HotelActionTypes.GetHotelById;
+  constructor(public payload?: number) { }
+}
+
+export class GetHotelByIdSuccess implements Action {
+  readonly type = HotelActionTypes.GetHotelByIdSuccess;
+
+  constructor(public payload: IHotel) { }
+}
+
+export class GetHotelByIdFail implements Action {
+  readonly type = HotelActionTypes.GetHotelByIdFail;
+
+  constructor(public payload: string) { }
+}
+
 ////////////
 export class LoadCount implements Action {
   readonly type = HotelActionTypes.LoadCount;
@@ -158,6 +182,9 @@ export class DeleteFavoriteHotel implements Action {
 export type HotelActions = SetSelectedHotel
   | ClearSelectedHotel
   | InitializeSelectedHotel
+  | GetHotelById
+  | GetHotelByIdFail
+  | GetHotelByIdSuccess
   | Load
   | LoadSuccess
   | LoadFail
