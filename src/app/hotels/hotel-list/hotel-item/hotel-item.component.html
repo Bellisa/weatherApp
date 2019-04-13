@@ -15,7 +15,9 @@
           (click)="addOrDelFav($event)">
         </span>
       </small>
+      <!--[appShowControlAuth]="false" -->
       <a 
+      
         [routerLink]="['/hotels',hotel.id,'edit']" 
         routerLinkActive="active" 
           [routerLinkActiveOptions]="{exact: true}"

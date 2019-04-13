@@ -26,6 +26,7 @@ import { HotelsDetailsComponent } from './hotels-details/hotels-details.componen
 import { HotelAddEditComponent } from './hotel-add-edit/hotel-add-edit.component';
 import { HotelsComponent } from "./hotels/HotelsComponent";
 import { RouterModule } from '@angular/router';
+import { ShowControlAuthDirective } from '../components/directive/show-control-auth.directive';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { RouterModule } from '@angular/router';
     FavHotelItemComponent,
     HotelsDetailsComponent,
     HotelAddEditComponent,
-    HotelsComponent
+    HotelsComponent,ShowControlAuthDirective
 
   ],
   imports: [
@@ -53,7 +54,7 @@ import { RouterModule } from '@angular/router';
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule,
+    RouterModule
   ],
   exports: [
     HotelsComponent,

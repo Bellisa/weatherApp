@@ -12,9 +12,11 @@ import * as userActions from './state/user.actions';
 })
 export class AuthService implements OnInit, OnDestroy {
     public currentUser: IUser;
+    public currentUser$: Observable<IUser>;
     private subUser: Subscription;
 
     constructor(private store: Store<fromUser.State>) { 
+        this.currentUser$=this.store.pipe(select(fromUser.getCurentUser));
         this.subUser = this.store.pipe(select(fromUser.getCurentUser))
             .subscribe((val: IUser) => { 
                 this.currentUser = val; 

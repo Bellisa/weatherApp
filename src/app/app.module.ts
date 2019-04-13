@@ -32,6 +32,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { NgbAlertComponent } from './components/ngb-alert/ngb-alert.component';
 import { reducerRoot } from './state/root.reducer';
 import { HotelCarouselComponent } from './home/hotel-carousel/hotel-carousel.component';
+import { ShowControlAuthDirective } from './components/directive/show-control-auth.directive';
 
 @NgModule({
   declarations: [
