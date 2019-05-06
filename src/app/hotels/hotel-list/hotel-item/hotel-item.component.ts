@@ -20,11 +20,11 @@ export class HotelItemComponent {
   public hotelClickEvent: EventEmitter<IHotel> = new EventEmitter();
   @Output()
   public favClickEvent: EventEmitter<IHotel> = new EventEmitter();
+  @Output()
+  public hotelDeleteClickEvent: EventEmitter<IHotel> = new EventEmitter();
+
 
   public selectHotel(event: MouseEvent) {
-   /* if (event.toElement.className === "favDel fas fa-heart ml-3"
-      || event.toElement.className === "favAd fas fa-heart ml-3")
-      return;*/
     this.hotelClickEvent.emit(this.hotel);
   }
 
@@ -39,5 +39,11 @@ export class HotelItemComponent {
   public addOrDelFav(event:Event) {
     event.stopPropagation();
     this.favClickEvent.emit(this.hotel);
+  }
+  public deleteHotel(event:Event){
+    event.stopPropagation();
+    if (confirm(`Really delete the Hotel: ${this.hotel.title}?`)) {
+    this.hotelDeleteClickEvent.emit(this.hotel);
+    }
   }
 }

@@ -145,7 +145,7 @@
       "userName": "Bellisa",
       "password": "123",
       "isAdmin": false,
-      "token": null
+      "token": "123456"
     }
   ]
 }

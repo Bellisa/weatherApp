@@ -16,7 +16,7 @@ import { HotelModule } from './hotels/hotel.module';
 import { StoreModule, MetaReducer } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { reducer, HotelState } from './hotels/state/hotel.reducer';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { from } from 'rxjs';
 import { UserModule } from './user/user.module';
@@ -33,6 +33,9 @@ import { NgbAlertComponent } from './components/ngb-alert/ngb-alert.component';
 import { reducerRoot } from './state/root.reducer';
 import { HotelCarouselComponent } from './home/hotel-carousel/hotel-carousel.component';
 import { ShowControlAuthDirective } from './components/directive/show-control-auth.directive';
+import { ApiInterceptor } from './interceptor/api.interceptor';
+import { UserlService } from 'src/services/user.service';
+import { BaseService } from 'src/services/base.service';
 
 @NgModule({
   declarations: [
@@ -48,19 +51,22 @@ import { ShowControlAuthDirective } from './components/directive/show-control-au
     NgbModule,
     FormsModule,
     HotelModule,
-    //StoreModule.forRoot({}),
     StoreModule.forRoot({ root: reducerRoot }),
     EffectsModule.forRoot([]),
     HttpClientModule,
     UserModule,
     ReactiveFormsModule,
-    //RouterModule.forRoot(routes),
    AppRoutingModule,
 
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
 
-  providers: [],
+  providers: [
+    BaseService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: ApiInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

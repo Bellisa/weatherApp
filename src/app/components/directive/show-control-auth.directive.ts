@@ -20,8 +20,7 @@ export class ShowControlAuthDirective implements OnInit {
   }
 
   ngOnInit() {
-    this.viewContainer.clear();
-    console.log('sfsdfsdf')
+    
     this.authService.currentUser$.subscribe(user =>{
       if (user && this.condition || !user && !this.condition) {
         this.viewContainer.createEmbeddedView(this.templateRef);

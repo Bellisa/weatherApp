@@ -16,12 +16,8 @@
         </span>
       </small>
       <!--[appShowControlAuth]="false" -->
-      <a 
-      
-        [routerLink]="['/hotels',hotel.id,'edit']" 
-        routerLinkActive="active" 
-          [routerLinkActiveOptions]="{exact: true}"
-        class="text-black font-weight-bold">edit</a>
+     <a *appShowControlAuth="true" [routerLink]="['/hotels',hotel.id,'edit']" >edit</a>
+     <a *appShowControlAuth="true" (click)="deleteHotel($event)" >delete</a>
       </div>
     <div class="content">      
       <div class="row mb-2">
