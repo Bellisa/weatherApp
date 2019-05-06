@@ -4,7 +4,7 @@ This project - single page aplication and was generated with [Angular CLI](https
   
   ## Installation sources
 Clone repository
-`git clone https://github.com/Bellisa/OK_store.git`
+`git clone https://github.com/Bellisa/weatherApp.git`
 Go to project folder and make
 `npm i`
 
