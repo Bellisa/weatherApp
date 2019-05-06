@@ -22,6 +22,12 @@ Some packages usages might change so you should run npm prune & npm install ofte
   `$ npm prune`
   `$ npm install`
 ## Architecture
+
+<img src="img/1.png">
+<img src="img/2.png">
+<img src="img/3.png">
+<img src="img/4.png">
+
 ### Project scheme
 
 ## Code scaffolding
