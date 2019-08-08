@@ -12,6 +12,7 @@ import { HttpHeaders, HttpParams } from '@angular/common/http';
   providedIn: 'root',
 })
 export class UserlService {
+  private tuple: [number] = [0];
   private usersUrl = `${environment.url}/users`;
 
   constructor(private baseService: BaseService) { }
